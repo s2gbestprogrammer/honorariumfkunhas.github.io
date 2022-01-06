@@ -4,7 +4,7 @@
 @error('bagian')
 {{$message}}
 @enderror
-<form action="{{route('users.store')}}" method="post">
+<form action="{{route('users.update', $user->id)}}" method="post">
     @csrf
     name :<input type="text" name="name"> <br>
     username :<input type="text" name="username"> <br>
@@ -13,7 +13,7 @@
         <option value="">---- pilih golongan -----</option>
         <option value="I">I</option>
         <option value="II">II</option>
-        <option value="III">III</option>
+        <option value="II">III</option>
         <option value="IV">IV</option>
     </select> <br>
     bagian :

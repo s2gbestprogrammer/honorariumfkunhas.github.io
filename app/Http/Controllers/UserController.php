@@ -35,6 +35,9 @@ class UserController extends Controller
             'users' => User::all()
         ]);
     }
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -48,6 +51,8 @@ class UserController extends Controller
         $validateData = $request->validate([
             'name' => 'required|max:255|min:3',
             'username' => 'required|min:3|unique:users',
+            'golongan' => 'required',
+            'bagian' => 'required',
             'password' => 'required|min:5|max:255',
             'role' => 'required',
         ]);
@@ -69,7 +74,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('dashboard.admin.users.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -92,6 +99,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+
+        return redirect('/dashboard/admin/users')->with('success', "new user has been deleted");
     }
 }

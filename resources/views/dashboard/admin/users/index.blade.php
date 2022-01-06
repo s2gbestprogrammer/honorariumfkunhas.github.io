@@ -3,22 +3,26 @@
       {{session('success')}}
   </div>
   @endif
-  <a href="{{route('users.create')}}" class="btn btn-primary">tambah user</a>
-  <table cellspacing="20px">
+  <a href="{{route('users.create')}}" class="btn btn-primary">tambah @if(auth()->user()->role == 'admin') {{"Dosen"}} @else {{"user"}} @endif</a>
+  <table cellspacing="20px" border="1px">
 
       <tr>
           <td>No</td>
           <td>Nama</td>
           <td>Username</td>
+          <td>Golongan</td>
+          <td>Bagian</td>
           <td>role</td>
+          <td>Aksi</td>
 
       </tr>
       @foreach($users as $user)
 
       {{-- < kondisi untuk menghilangkan superadmin   --}}
       <?php
-      if($user->role == "super-admin"){
+      if($user->role == "super-admin" || $user->role == "admin"){
         $hidden = "hidden";
+        $nomor = $loop->iteration -1;
       } else {
           $hidden = "";
       }
@@ -26,10 +30,20 @@
       {{-- kondisi untuk menghilangkan superadmin >  --}}
 
       <tr {{$hidden}}>
-          <td>{{$loop->iteration - 1}}</td>
+          <td>{{$nomor}}</td>
           <td>{{$user->name}}</td>
           <td>{{$user->username}}</td>
+          <td>{{$user->golongan}}</td>
+          <td>{{$user->bagian}}</td>
           <td>{{$user->role}}</td>
+          <td>
+              <a href="{{route('users.edit', $user->id)}}">Edit</a>
+              <form action="{{route('users.destroy', $user->id)}}" method="POST">
+                  @csrf
+                  @method('delete')
+                  <button>Delete</button>
+              </form>
+          </td>
       </tr>
       @endforeach
   </table>
