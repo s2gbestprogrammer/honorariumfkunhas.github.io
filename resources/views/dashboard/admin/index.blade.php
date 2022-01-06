@@ -17,7 +17,8 @@
     <ul>
         <li><a href="/dashboard/admin/users">Users</a></li>
         <li> <a href="/dashboard/admin/profile">Profilku</a> </li>
-        <li>d</li>
+        <li> <a href="/dashboard/admin/divisions">divisions</a></li>
+        <li> <a href="/dashboard/admin/honor">Honor</a></li>
     </ul>
 
     <form action="/logout" method="POST">

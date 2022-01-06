@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -37,3 +38,4 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // ADMIN //
 Route::resource('/dashboard/admin/users', UserController::class)->middleware('auth');
 Route::resource('/dashboard/admin/profile', ProfileController::class)->middleware('auth');
+Route::resource('/dashboard/admin/divisions', DivisionController::class)->middleware('auth');

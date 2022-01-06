@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Division;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
         User::Create([
             'name' => 'Super Admin',
             'golongan' => 'X',
-            'bagian' => 'Super Admin',
+            'division_id' => 1,
             'username' => 'superadmin',
             'password' => bcrypt('assalamualaikum'),
             'role' => 'super-admin'
@@ -25,10 +26,17 @@ class DatabaseSeeder extends Seeder
         User::Create([
             'name' => 'Admin',
             'golongan' => 'X',
-            'bagian' => 'Admin',
+            'division_id' => 1,
             'username' => 'admin',
             'password' => bcrypt('12345'),
             'role' => 'admin'
+        ]);
+
+        Division::Create([
+            'name' => 'none'
+        ]);
+        Division::Create([
+            'name' => 'fakultas kesehatan'
         ]);
     }
 }

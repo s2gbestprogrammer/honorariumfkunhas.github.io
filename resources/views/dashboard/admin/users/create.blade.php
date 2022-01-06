@@ -1,7 +1,7 @@
 @error('golongan')
 {{$message}}
 @enderror
-@error('bagian')
+@error('division_id')
 {{$message}}
 @enderror
 <form action="{{route('users.store')}}" method="post">
@@ -17,9 +17,12 @@
         <option value="IV">IV</option>
     </select> <br>
     bagian :
-    <select name="bagian" id="bagian">
+    <select name="division_id" id="division_id">
         <option value="">---- pilih role -----</option>
-        <option value="1">Ilmu kesehatan anak</option>
+        @foreach($divisions as $division)
+
+        <option value="{{$division->id}}">{{$division->name}}</option>
+        @endforeach
     </select> <br>
     password : <input type="text" name="password"> <br>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Division;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +20,8 @@ class UserController extends Controller
     public function index(User $user)
     {
         return view('dashboard.admin.users.index', [
-            'users' => User::all()
+            'users' => User::all(),
+
         ]);
     }
 
@@ -32,7 +34,8 @@ class UserController extends Controller
     public function create(User $user)
     {
         return view('dashboard.admin.users.create', [
-            'users' => User::all()
+            'users' => User::all(),
+            'divisions' => Division::all()
         ]);
     }
 
@@ -52,7 +55,7 @@ class UserController extends Controller
             'name' => 'required|max:255|min:3',
             'username' => 'required|min:3|unique:users',
             'golongan' => 'required',
-            'bagian' => 'required',
+            'division_id' => 'required',
             'password' => 'required|min:5|max:255',
             'role' => 'required',
         ]);
