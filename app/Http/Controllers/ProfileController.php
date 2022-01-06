@@ -14,50 +14,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
+
         return view('dashboard.admin.profile.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
     }
 
     /**
@@ -70,16 +28,12 @@ class ProfileController extends Controller
     public function update(Request $request, User $user)
     {
         //
-    }
+        $validateData = $request->validate([
+            'name' => 'required|min:5|min:255',
+            'password' => 'required|min:5'
+        ]);
+        User::where('id', auth()->user()->id)->update($validateData);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
+        return back()->with('success', 'berhasil mengupdate profile');
     }
 }
