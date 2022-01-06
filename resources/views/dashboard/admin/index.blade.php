@@ -16,9 +16,14 @@
 
     <ul>
         <li><a href="/dashboard/admin/users">Users</a></li>
-        <li>home </li>
+        <li> <a href="/dashboard/admin/profile">Profilku</a> </li>
+        <li>d</li>
     </ul>
 
+    <form action="/logout" method="POST">
+        @csrf
+        <button type="submit">Log out</button>
+    </form>
 
 </body>
 </html>

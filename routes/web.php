@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,8 @@ Route::get('/dashboard/admin', function () {
 })->middleware('auth');
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // ADMIN //
-Route::resource('/dashboard/admin/users', UserController::class);
+Route::resource('/dashboard/admin/users', UserController::class)->middleware('auth');
+Route::resource('/dashboard/admin/profile', ProfileController::class)->middleware('auth');
