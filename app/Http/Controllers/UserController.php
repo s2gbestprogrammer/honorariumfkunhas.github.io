@@ -56,6 +56,8 @@ class UserController extends Controller
             'username' => 'required|min:3|unique:users',
             'golongan' => 'required',
             'division_id' => 'required',
+            'rekening' => 'required',
+            'bank' => 'required',
             'password' => 'required|min:5|max:255',
             'role' => 'required',
         ]);

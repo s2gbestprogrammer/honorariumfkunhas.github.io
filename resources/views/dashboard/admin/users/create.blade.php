@@ -24,7 +24,9 @@
         <option value="{{$division->id}}">{{$division->name}}</option>
         @endforeach
     </select> <br>
-    password : <input type="text" name="password"> <br>
+
+    rekening :<input type="text" name="rekening"> <br>
+    bank :<input type="text" name="bank"> <br>
 
     @if(auth()->user()->role == "super-admin")
     <select name="role">
@@ -33,6 +35,8 @@
         <option value="dosen">Dosen</option>
     </select>
     @else
+
+    password : <input type="text" name="password"> <br>
 
     <input type="hidden" name="role" value="dosen"> <br>
     @endif

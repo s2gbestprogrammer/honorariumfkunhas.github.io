@@ -18,6 +18,7 @@
         <li><a href="/dashboard/admin/users">Users</a></li>
         <li> <a href="/dashboard/admin/profile">Profilku</a> </li>
         <li> <a href="/dashboard/admin/divisions">divisions</a></li>
+        <li> <a href="/dashboard/admin/categories">categories</a></li>
         <li> <a href="/dashboard/admin/honor">Honor</a></li>
     </ul>
 

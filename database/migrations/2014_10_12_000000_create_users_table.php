@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->foreignIdFor(Division::class);
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('rekening')->default("00000");
+            $table->string('bank')->default("XXX");
             $table->string('role');
             $table->rememberToken();
             $table->timestamps();

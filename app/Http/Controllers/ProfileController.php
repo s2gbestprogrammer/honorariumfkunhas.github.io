@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -29,8 +30,7 @@ class ProfileController extends Controller
     {
         //
         $validateData = $request->validate([
-            'name' => 'required|min:5|min:255',
-            'password' => 'required|min:5'
+            'name' => 'required|min:5|max:255',
         ]);
         User::where('id', auth()->user()->id)->update($validateData);
 
