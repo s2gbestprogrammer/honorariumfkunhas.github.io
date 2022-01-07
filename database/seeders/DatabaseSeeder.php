@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Division;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -37,6 +38,11 @@ class DatabaseSeeder extends Seeder
         ]);
         Division::Create([
             'name' => 'fakultas kesehatan'
+        ]);
+
+        Category::Create([
+            'name' => 'Honorarium mengajar',
+            'type' => 'semester',
         ]);
     }
 }

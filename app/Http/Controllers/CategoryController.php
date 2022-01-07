@@ -14,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.admin.categories.index', [
+            "categories" => Category::all()
+        ]);
     }
 
     /**
@@ -25,6 +27,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('dashboard.admin.categories.create');
     }
 
     /**
@@ -35,7 +38,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required',
+            'type' => 'required'
+        ]);
+
+        Category::create($validateData);
+
+        return redirect('/dashboard/admin/categories')->with("success", "berhasil menambah kategori");
     }
 
     /**
@@ -46,7 +56,6 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
     }
 
     /**

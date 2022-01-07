@@ -19,7 +19,7 @@ class CreateHonorsTable extends Migration
             $table->double('jumlah_honor');
             $table->double('potongan');
             $table->double('jumlah_diterima');
-            $table->double('keterangan');
+            $table->foreignId('category_id');
             $table->timestamps();
         });
     }

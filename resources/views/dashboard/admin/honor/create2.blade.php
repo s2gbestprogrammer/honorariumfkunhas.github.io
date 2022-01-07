@@ -3,42 +3,45 @@
       {{session('success')}}
   </div>
   @endif
-  <a href="{{route('honor.create')}}" class="btn btn-primary">tambah honor</a>
+
   <table cellspacing="20px" border="1px">
 
       <tr>
           <td>No</td>
           <td>Nama</td>
+          <td>Username</td>
           <td>Golongan</td>
           <td>Bagian</td>
-          <td>Jumlah honor</td>
-          <td>Potongan</td>
-          <td>Jumlah Diterima</td>
-          <td>Keterangan</td>
+          <td>rekening</td>
+          <td>bank</td>
           <td>role</td>
           <td>Aksi</td>
 
       </tr>
       <?php $nomor = 0; ?>
-      @foreach($honors as $honor)
+      @foreach($users as $user)
       {{-- < kondisi untuk menghilangkan superadmin   --}}
       <?php
+      if($user->role == "super-admin" || $user->role == "admin"){
+        $hidden = "hidden";
+
+      } else {
+          $hidden = "";
+      }
       ?>
       {{-- kondisi untuk menghilangkan superadmin >  --}}
 
       <tr {{$hidden}}>
           <td>{{$nomor++ - 1}}</td>
-          <td>{{$honor->user->name}}</td>
-          <td>{{$honor->user->golongan}}</td>
-          <td>{{$honor->user->division->name}}</td>
-          <td>{{$honor->jumlah_honor}}</td>
-          <td>{{$honor->potongan}}</td>
-          <td>{{$honor->jumlah_diterima}}</td>
-          <td>{{$honor->keterangan}}</td>
-          <td>{{$honor->user->role}}</td>
+          <td>{{$user->name}}</td>
+          <td>{{$user->username}}</td>
+          <td>{{$user->golongan}}</td>
+          <td>{{$user->division->name}}</td>
+          <td>{{$user->rekening}}</td>
+          <td>{{$user->bank}}</td>
+          <td>{{$user->role}}</td>
           <td>
-              <a href="">edit</a>
-              <a href=""> detail </a>
+              <a href="{{route('users.edit', $user->id)}}">Beri honor</a>
               <form action="{{route('users.destroy', $user->id)}}" method="POST">
                   @csrf
                   @method('delete')

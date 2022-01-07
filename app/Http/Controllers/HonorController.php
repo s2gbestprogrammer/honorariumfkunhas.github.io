@@ -27,7 +27,7 @@ class HonorController extends Controller
      */
     public function create()
     {
-        return view('dashboard.admin.honor.index', [
+        return view('dashboard.admin.honor.create', [
             'users' => User::all(),
             'keterangan' => 0
         ]);
@@ -39,9 +39,9 @@ class HonorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $honor)
     {
-        //
+        return $honor;
     }
 
     /**
@@ -50,9 +50,11 @@ class HonorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $honor)
     {
-        //
+        return view('dashboard.admin.honor.show', [
+            "users" => $honor
+        ]);
     }
 
     /**
