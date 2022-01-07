@@ -34,6 +34,6 @@ class User extends Authenticatable
     }
     public function honor()
     {
-        return $this->belongsTo(Honor::class);
+        return $this->hasMany(Honor::class);
     }
 }

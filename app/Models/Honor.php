@@ -12,15 +12,20 @@ class Honor extends Model
     protected $with = ['user'];
 
     protected $fillable = [
-        'user_Id',
+        'user_id',
         'jumlah_honor',
         'potongan',
         'jumlah_diterima',
-        'keterangan',
+        'category_id',
     ];
 
     public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

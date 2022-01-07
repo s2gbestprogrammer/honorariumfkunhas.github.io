@@ -41,12 +41,8 @@
           <td>{{$user->bank}}</td>
           <td>{{$user->role}}</td>
           <td>
-              <a href="{{route('honor.show', $user->id)}}">Beri honor</a>
-              <form action="{{route('users.destroy', $user->id)}}" method="POST">
-                  @csrf
-                  @method('delete')
-                  <button>Delete</button>
-              </form>
+              <a href="{{route('honor.edit', $user->id)}}">Beri honor</a>
+
           </td>
       </tr>
 
