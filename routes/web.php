@@ -37,7 +37,9 @@ Route::get('/dashboard/admin', function () {
 })->middleware('auth');
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// sesuatu salah
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // ADMIN //
 Route::put('/password/{user}', function (Request $request, User $user) {

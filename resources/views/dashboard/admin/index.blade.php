@@ -1,31 +1,30 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('dashboard.app')
 
-    <title>Laravel</title>
+@section('content')
+	<!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-12">
+                        <div class="card tryal-gradient">
+                        <div class="card-body tryal row">
+                            <div class="col-xl-7 col-sm-6">
+                                <h2>Selamat datang {{auth()->user()->name}}</h2>
+                                <span>Let Fillow manage your project automatically with our best AI systems </span>
+                                <a href="javascript:void(0);" class="btn btn-rounded  fs-18 font-w500">Try Free Now</a>
+                            </div>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+                        </div>
+                    </div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+@endsection
 
-    <!-- Styles -->
-
-</head>
-<body>
-
-    <ul>
-        <li><a href="/dashboard/admin/users">Users</a></li>
-        <li> <a href="/dashboard/admin/profile">Profilku</a> </li>
-        <li> <a href="/dashboard/admin/divisions">divisions</a></li>
-        <li> <a href="/dashboard/admin/categories">categories</a></li>
-        <li> <a href="/dashboard/admin/honor">Honor</a></li>
-    </ul>
-
-    <form action="/logout" method="POST">
-        @csrf
-        <button type="submit">Log out</button>
-    </form>
-
-</body>
-</html>
