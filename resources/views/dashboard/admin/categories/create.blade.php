@@ -8,7 +8,6 @@
         <option value="kegiatan">kegiatan</option>
         <option value="tertentu">tertentu</option>
     </select>
-
     <br>
 
     <button type="submit">Tambah category</button>

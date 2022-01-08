@@ -15,7 +15,7 @@
                         <i class="fas fa-users"></i>
                         <span class="nav-text">Pengguna</span>
                     </a>
-                    <li><a href="/dashboard/admin/divisions" aria-expanded="false">
+                    <li><a href="/dashboard/admin/honor" aria-expanded="false">
                         <i class="fas fa-hand-holding-usd"></i>
                         <span class="nav-text">Honor</span>
                     </a>
@@ -23,11 +23,11 @@
                         <i class="fas fa-clone"></i>
                         <span class="nav-text">Bagian</span>
                     </a>
-                    <li><a href="/dashboard/admin/divisions" aria-expanded="false">
+                    <li><a href="/dashboard/admin/categories" aria-expanded="false">
                         <i class="fas fa-table"></i>
                         <span class="nav-text">Kategori</span>
                     </a>
-                    <li><a href="/dashboard/admin/divisions" aria-expanded="false">
+                    <li><a href="/dashboard/admin/feedback" aria-expanded="false">
                         <i class="fas fa-heart"></i>
                         <span class="nav-text">Feedback</span>
                     </a>

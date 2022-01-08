@@ -17,6 +17,7 @@
 	<title>Dashboard</title>
 
 	<!-- FAVICONS ICON -->
+
 	<link rel="shortcut icon" type="/image/png" href="/images/favicon.png">
 	<link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
 	<link href="/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
@@ -84,6 +85,10 @@
       <script src="/js/plugins-init/datatables.init.js"></script>
 
       <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+
+      {{-- sweet alert --}}
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 
 	<script>
