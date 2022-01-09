@@ -58,7 +58,7 @@
 
                             <td>
                                 <div class="d-flex">
-                                    <a href="/dashboard/admin/honor/{{$honor->user->id}}" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
+                                    <a href="{{route('honor.show',$honor->user->id)}}" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
                                     <form action="{{route('honor.destroy', $honor->id)}}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf

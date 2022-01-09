@@ -36,6 +36,6 @@ class User extends Authenticatable
     }
     public function honor()
     {
-        return $this->hasMany(Honor::class);
+        return $this->hasMany(Honor::class)->orderBy('created_at', 'DESC');
     }
 }

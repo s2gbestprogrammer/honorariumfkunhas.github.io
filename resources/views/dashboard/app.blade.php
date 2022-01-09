@@ -19,15 +19,15 @@
 	<!-- FAVICONS ICON -->
 
 	<link rel="shortcut icon" type="/image/png" href="/images/favicon.png">
-	<link href="/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link href="/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
-	<link rel="stylesheet" href="/vendor/nouislider/nouislider.min.css">
+	<link href="{{asset('vendor/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet">
+	<link href="{{asset('vendor/owl-carousel/owl.carousel.css')}}" rel="stylesheet">
+	<link rel="stylesheet" href="{{asset('vendor/nouislider/nouislider.min.css')}}">
 
 	<!-- Style css -->
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
      <!-- Datatable -->
-     <link href="/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+     <link href="{{asset('vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet">
 
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -62,31 +62,31 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="/vendor/global/global.min.js"></script>
-	<script src="/vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="{{asset('vendor/global/global.min.js')}}"></script>
+	<script src="{{asset('vendor/chart.js/Chart.bundle.min.js')}}"></script>
+	<script src="{{asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
 
 	<!-- Apex Chart -->
-	<script src="/vendor/apexchart/apexchart.js"></script>
+	<script src="{{asset('vendor/apexchart/apexchart.js')}}"></script>
 
-	<script src="/vendor/chart.js/Chart.bundle.min.js"></script>
+	<script src="{{asset('vendor/chart.js/Chart.bundle.min.js')}}"></script>
 
 	<!-- Chart piety plugin files -->
-    <script src="/vendor/peity/jquery.peity.min.js"></script>
+    <script src="{{asset('vendor/peity/jquery.peity.min.js')}}"></script>
 	<!-- Dashboard 1 -->
-	<script src="/js/dashboard/dashboard-1.js"></script>
+	<script src="{{asset('js/dashboard/dashboard-1.js')}}"></script>
 
-	<script src="/vendor/owl-carousel/owl.carousel.js"></script>
+	<script src="{{asset('vendor/owl-carousel/owl.carousel.js')}}"></script>
 
-    <script src="/js/custom.min.js"></script>
-	<script src="/js/dlabnav-init.js"></script>
-	<script src="/js/demo.js"></script>
+    <script src="{{asset('js/custom.min.js')}}"></script>
+	<script src="{{asset('js/dlabnav-init.js')}}"></script>
+	<script src="{{asset('js/dlabnav-init.js')}}"></script>
 
       <!-- Datatable -->
-      <script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
-      <script src="/js/plugins-init/datatables.init.js"></script>
+      <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+      <script src="{{asset('js/plugins-init/datatables.init.js')}}"></script>
 
-      <script src="/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+      <script src="{{asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
 
       {{-- sweet alert --}}
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

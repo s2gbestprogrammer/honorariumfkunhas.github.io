@@ -71,7 +71,7 @@
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
-                            <form action="/password" method="post">
+                            <form action="{{route('change.password', auth()->user()->id)}}" method="post">
                                 @csrf
                                 @method('put')
 

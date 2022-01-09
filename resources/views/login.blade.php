@@ -18,8 +18,8 @@
 	<title>Admin Dashboard</title>
 
 	<!-- FAVICONS ICON -->
-	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
-    <link href="/css/style.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="{{asset('images/favicon.png')}}">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
 </head>
 
@@ -36,7 +36,7 @@
 										<a href="index.html"></a>
 									</div>
                                     <h4 class="text-center mb-4">Sign in your account</h4>
-                                    <form action="/login" method="POST">
+                                    <form action="{{route('authenticate')}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
                                             <label class="mb-1"><strong>Username</strong></label>

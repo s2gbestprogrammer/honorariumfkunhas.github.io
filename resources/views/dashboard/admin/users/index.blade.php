@@ -57,7 +57,7 @@
 
                             <td>
                                 <div class="d-flex">
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
                                     <form action="{{route('users.destroy', $user->id)}}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf

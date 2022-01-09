@@ -18,7 +18,9 @@ class HonorController extends Controller
     {
         return view('dashboard.admin.honor.index', [
             'honors' => Honor::all(),
-            'users' => User::all()
+            'users' => User::all(),
+            'categories' => Category::all(),
+
         ]);
     }
 
@@ -57,8 +59,8 @@ class HonorController extends Controller
         } else if($golongan == "IV")
         {
             $potongan = 15;
-        } else {
-            $potongan = 0;
+        } else if($golongan == "VI") {
+            $potongan = 15;
         }
 
 

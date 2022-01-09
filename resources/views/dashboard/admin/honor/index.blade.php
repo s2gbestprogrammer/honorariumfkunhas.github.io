@@ -17,15 +17,20 @@
                   ><i class="flaticon-381-search-2"></i></a
               ></span>
             </div>
-            <div class="input-group contacts-search mb-4">
+            <div class="mb-4">
+                <a
+                  href="{{route('honor.create')}}"
+                  class="btn btn-primary btn-rounded fs-18"
+                  >DAFTAR HONOR</a
+                >
+              </div>
+            {{-- <div class="input-group contacts-search mb-4">
                 <a href="{{route('honor.create')}}"
                   type="text"
                   class="btn btn-primary"
                   placeholder="Search here..."
                 >Lihat daftar honor </a>
-
-              </div>
-
+              </div> --}}
           </div>
           <div class="row">
             <div class="col-xl-12">
@@ -92,6 +97,12 @@
                           >
                             Golongan : {{$user->golongan}}
                           </p>
+                          @if($user->role == 'dosen')
+
+                          <p class="fs-12">Honor terbaru : <?php $gos = $user->honor->first() ?> {{'Rp.'.number_format($gos->jumlah_diterima)}} pada tanggal {{$gos->created_at->format('M/d/Y')}}</p>
+
+
+                          @endif
 
                           <ul>
 
@@ -138,8 +149,8 @@
       </div>
 
 
-      <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="payModal">
-        <div class="modal-dialog modal-sm">
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="payModal">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Beri Honor</h5>
@@ -151,17 +162,16 @@
                     <div class="modal-body">
 
                         <select name="category_id" id="category_id" class="default-select form-control mb-2">
-                                         <option value="1">PILIH KATEGORI</option>
-                                         <option value="1">Hononarium mengajar per semester</option>
-                                         <option value="1">Hononarium mengajar per bulan</option>
+                                         <option value="">PILIH KATEGORI</option>
+                                        @foreach ($categories as $category)
+
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+
+                                        @endforeach
                         </select>
                         </div>
                 <div class="modal-body" id="modalpay">
-
                 </div>
-
-
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>

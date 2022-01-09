@@ -37,12 +37,32 @@ class DatabaseSeeder extends Seeder
             'name' => 'none'
         ]);
         Division::Create([
-            'name' => 'fakultas kesehatan'
+            'name' => 'ilmu kesehatan anak'
         ]);
 
         Category::Create([
             'name' => 'Honorarium mengajar',
             'type' => 'semester',
+        ]);
+
+        Category::Create([
+            'name' => 'Honorarium dosen tidak tetap',
+            'type' => 'bulan',
+        ]);
+
+        Category::Create([
+            'name' => 'Honorarium membimbing',
+            'type' => 'kegiatan',
+        ]);
+
+        Category::Create([
+            'name' => 'Honorarium menguji',
+            'type' => 'kegiatan',
+        ]);
+
+        Category::Create([
+            'name' => 'Honorarium kegiatan',
+            'type' => 'tertentu',
         ]);
     }
 }

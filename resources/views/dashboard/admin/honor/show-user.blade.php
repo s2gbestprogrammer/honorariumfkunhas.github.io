@@ -10,31 +10,36 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Basic Datatable</h4>
+                        <h4 class="card-title">Detail Honor <b>{{$users->name}}</b></h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            {{$honors}}
+
                             <table id="example" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Jumlah honor</th>
+                                        <th>Potongan</th>
+                                        <th>Jumlah Diterima</th>
+                                        <th>Keterangan</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($honors as $honor)
                                     <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$honor->created_at->format('M/d/Y')}}</td>
+                                        <td>{{$honor->jumlah_honor}}</td>
+                                        <td>{{$honor->potongan}}</td>
+                                        <td>{{$honor->jumlah_diterima}}</td>
+                                        <td>{{$honor->category->name}}</td>
+
                                     </tr>
+                                    @endforeach
+
                             </table>
                         </div>
                     </div>
