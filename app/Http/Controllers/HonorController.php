@@ -43,6 +43,8 @@ class HonorController extends Controller
     public function store(Request $request)
     {
 
+
+
         $golongan = $request->golongan;
 
         if($golongan == "I" || $golongan == "II")
@@ -54,6 +56,8 @@ class HonorController extends Controller
         } else if($golongan == "IV")
         {
             $potongan = 15;
+        } else {
+            $potongan = 0;
         }
 
 

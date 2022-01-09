@@ -4,6 +4,8 @@
         <div class="dlabnav">
             <div class="dlabnav-scroll">
 				<ul class="metismenu" id="menu">
+                    @can('admin')
+
                     <li><a href="/dashboard/admin/" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<span class="nav-text">Beranda  </span>
@@ -32,6 +34,16 @@
                         <span class="nav-text">Feedback</span>
                     </a>
                     </li>
+                    @endcan
+                    @can('dosen')
+                    <li><a href="/dashboard/dosen/" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">Beranda  </span>
+                    </a>
+
+
+                </li>
+                    @endcan
 
 
 

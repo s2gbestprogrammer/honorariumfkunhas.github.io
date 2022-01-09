@@ -1,13 +1,14 @@
-@if(session()->has('success'))
-<div class="alert alert-success" role="alert">
-    {{session('success')}}
-</div>
-@endif
+
 
 @extends('dashboard.app')
 @section('content')
 <div class="content-body">
     <div class="container-fluid">
+        @if(session()->has('success'))
+<div class="alert alert-success" role="alert">
+    {{session('success')}}
+</div>
+@endif
 <div class="col-12">
     <div class="ms-3 mb-3">
 

@@ -3,6 +3,7 @@
 
 <div class="content-body">
     <div class="container-fluid">
+
         @if(session()->has('success'))
         <div class="alert alert-success" role="alert">
             {{session('success')}}
@@ -19,7 +20,7 @@
         <!-- row -->
         <div class="row">
 
-            <div class="col-xl-12 col-lg-12">
+            <div class="col-xl-6 ">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Tambah User</h4>
@@ -88,7 +89,7 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Username</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="username">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">

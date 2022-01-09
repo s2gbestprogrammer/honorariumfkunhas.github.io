@@ -24,6 +24,7 @@ class User extends Authenticatable
         'golongan',
         'division_id',
         'username',
+        'rekening',
         'bank',
         'password',
         'role',
