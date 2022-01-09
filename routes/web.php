@@ -52,6 +52,9 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('authentic
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // ADMIN //
+Route::post('getDetailHonor', [HonorController::class, 'show'])->name('get.detail.honor');
+
+
 Route::put('/password/{user}', function (Request $request, User $user) {
     $validateData = $request->validate([
         'password' => 'required',
@@ -66,6 +69,7 @@ Route::resource('/dashboard/admin/profile', ProfileController::class)->middlewar
 Route::resource('/dashboard/admin/divisions', DivisionController::class)->middleware('auth');
 Route::resource('/dashboard/admin/categories', CategoryController::class)->middleware('auth');
 Route::resource('/dashboard/admin/honor', HonorController::class)->middleware('auth');
+
 
 //DOSEN
 

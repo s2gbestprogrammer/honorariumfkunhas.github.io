@@ -8,21 +8,20 @@
 <div class="col-12">
     <div class="ms-3 mb-3">
 
-        <a href="{{route('honor.index')}}" class="btn btn-primary"><b> + Tambah Honor</b></a>
+        <a href="{{route('honor.create')}}" class="btn btn-primary"><b> + Tambah Honor</b></a>
 
     </div>
     <div class="card">
-
+        @if(session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{session('success')}}
+        </div>
+        @endif
         <div class="card-header">
             <h4 class="card-title">Data honor</h4>
         </div>
 
         <div class="card-body">
-            @if(session()->has('success'))
-            <div class="alert alert-success m-3" role="alert">
-                {{session('success')}}
-            </div>
-            @endif
             <div class="table-responsive">
                 <table id="example3" class="display" style="min-width: 845px">
                     <thead>
@@ -41,7 +40,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $nomor = 1; ?>
+                        <?php $nomor = 0; ?>
                         @foreach($honors as $honor)
 
                         <tr>

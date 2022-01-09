@@ -17,7 +17,8 @@ class HonorController extends Controller
     public function index()
     {
         return view('dashboard.admin.honor.index', [
-            'honors' => Honor::all()
+            'honors' => Honor::all(),
+            'users' => User::all()
         ]);
     }
 
@@ -30,7 +31,7 @@ class HonorController extends Controller
     {
         return view('dashboard.admin.honor.create', [
             'users' => User::all(),
-
+            'honors' => Honor::orderBy('created_at' , 'DESC')->get(),
         ]);
     }
 
@@ -78,7 +79,7 @@ class HonorController extends Controller
 
     Honor::create($validatedData);
 
-    return redirect('dashboard/admin/honor')->with('success', 'berhasil menambah honor ');
+    return redirect('dashboard/admin/honor/create')->with('success', 'berhasil menambah honor ');
 
 
 
@@ -93,7 +94,8 @@ class HonorController extends Controller
     public function show(User $honor)
     {
         return view('dashboard.admin.honor.show-user', [
-            'users' => $honor
+            'users' => $honor,
+            'honors' => Honor::where('user_id' , $honor->id)->orderBy('created_at', 'DESC')->get()
         ]);
     }
 
