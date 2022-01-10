@@ -118,6 +118,8 @@
                             @if ($gos !== null)
 
                             {{'Rp.'.$gos->jumlah_diterima}} pada tanggal {{$gos->created_at->format('M/d/Y')}}</p>
+                            @else
+                          </p>
                             @endif
 
 

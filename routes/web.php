@@ -7,6 +7,7 @@ use App\Http\Controllers\HonorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Feedback;
 use App\Models\Honor;
 use App\Models\User;
 use GuzzleHttp\Middleware;
@@ -29,9 +30,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
+if(auth()->user() == null)
+{
+    return view('login');
 
+} else if(auth()->user()->role == 'dosen') {
+    return redirect('/dashboard/dosen');
+} else if(auth()->user()->role == 'admin') {
+   return redirect('/dashboard/dosen');
+}
 
-return view('login');
 
 });
 
@@ -48,6 +56,8 @@ Route::get('/dashboard/dosen', function () {
     return view('dashboard.dosen.index', [
         "title" => "Dashboard | Dosen",
         "users" => User::where('id', auth()->user()->id)->get(),
+        "sum_honor" => Honor::all()->sum('jumlah_diterima'),
+        "feedback" => Feedback::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->get(),
         "honor" => Honor::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->first(),
     ]);
 })->middleware('auth')->name('dashboard.dosen');

@@ -18,6 +18,7 @@ class CreateFeedbackTable extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->string('body');
+            $table->string('balasan')->default('');
             $table->timestamps();
 
         });
