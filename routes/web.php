@@ -7,6 +7,7 @@ use App\Http\Controllers\HonorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Category;
 use App\Models\Feedback;
 use App\Models\Honor;
 use App\Models\User;
@@ -48,6 +49,8 @@ Route::get('/dashboard/admin', function () {
     return view('dashboard.admin.index', [
         "title" => "Dashboard | Admin",
         "users" => User::all(),
+        "jumlah_dosen" => User::where('role', 'dosen')->count(),
+        "jumlah_honor_keseluruhan" => Honor::all()->sum('jumlah_honor')
     ]);
 })->middleware('auth')->name('dashboard.admin');
 
@@ -107,6 +110,16 @@ Route::resource('/dashboard/admin/users', UserController::class)->middleware('is
 Route::resource('/dashboard/admin/profile', ProfileController::class)->middleware('isAdmin');
 Route::resource('/dashboard/admin/divisions', DivisionController::class)->middleware('isAdmin');
 Route::resource('/dashboard/admin/categories', CategoryController::class)->middleware('isAdmin');
+
+Route::post('/dashboard/admin/editcategories', function(Request $request){
+
+    $validateData = $request->validate([
+        'name' => 'required'
+    ]);
+
+    Category::where('id', $request->id)->update($validateData);
+    return back()->with('success', 'berhasil mengubah data category');
+})->name('edit.category')->middleware('isAdmin');
 Route::resource('/dashboard/admin/honor', HonorController::class)->middleware('isAdmin');
 
 

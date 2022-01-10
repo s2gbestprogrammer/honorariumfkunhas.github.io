@@ -107,19 +107,23 @@
                           >
 
                             Golongan : {{$user->golongan}}
-                          </p>
+
                           @if($user->role == 'dosen')
 
-                          <p class="fs-12">Honor terbaru : <?php
+                           <?php
                           $gos = $user->honor->first();
 
-
+                            $sekarang = now()->format('M/Y');
                           ?>
                             @if ($gos !== null)
+                            @php
+                                $honor_now = $gos->created_at->format('M/Y');
+                            @endphp
 
-                            {{'Rp.'.$gos->jumlah_diterima}} pada tanggal {{$gos->created_at->format('M/d/Y')}}</p>
-                            @else
-                          </p>
+                            @if ($sekarang == $honor_now)
+
+                            <p class="fs-12 fw-bold">Honor terbaru bulan ini : {{'Rp.'.$gos->jumlah_diterima}}</b> </p>
+                            @endif
                             @endif
 
 
