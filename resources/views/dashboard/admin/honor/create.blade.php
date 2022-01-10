@@ -6,12 +6,17 @@
     <div class="container-fluid">
 
 <div class="col-12">
-    <div class="ms-3 mb-3">
+    <div class="ms-3 mb-3 d-inline">
 
         <a href="{{route('honor.index')}}" class="btn btn-primary"><b> + Tambah Honor</b></a>
 
     </div>
-    <div class="card">
+    <div class="ms-3 mb-3 d-inline">
+
+        <a href="{{route('print.honor')}}" class="btn btn-primary"><b> PRINT </b></a>
+
+    </div>
+    <div class="card mt-3">
 
         <div class="card-header">
             <h4 class="card-title">Data honor</h4>

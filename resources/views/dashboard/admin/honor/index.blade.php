@@ -1,6 +1,16 @@
 @extends('dashboard.app')
 @section('content')
  <div class="content-body">
+    @error('jumlah_honor')
+    <div class="alert alert-danger m-3" role="alert">
+        {{$message}}
+    </div>
+    @enderror
+    @error('category_id')
+    <div class="alert alert-danger m-3" role="alert">
+        {{$message}}
+    </div>
+    @enderror
         <!-- row -->
         <div class="container-fluid">
           <div
@@ -79,7 +89,7 @@
                         <div class="media-body user-meta-info">
                           <h6 class="fs-18 font-w600 my-1">
                             <a
-                              href="app-profile.html"
+                              href="#"
                               class="text-black user-name"
                               data-name="Alan Green"
                               >{{$user->name}}</a
@@ -95,11 +105,20 @@
                             class="fs-14 mb-3 user-work"
                             data-occupation="UI Designer"
                           >
+
                             Golongan : {{$user->golongan}}
                           </p>
                           @if($user->role == 'dosen')
 
-                          <p class="fs-12">Honor terbaru : <?php $gos = $user->honor->first() ?> {{'Rp.'.number_format($gos->jumlah_diterima)}} pada tanggal {{$gos->created_at->format('M/d/Y')}}</p>
+                          <p class="fs-12">Honor terbaru : <?php
+                          $gos = $user->honor->first();
+
+
+                          ?>
+                            @if ($gos !== null)
+
+                            {{'Rp.'.$gos->jumlah_diterima}} pada tanggal {{$gos->created_at->format('M/d/Y')}}</p>
+                            @endif
 
 
                           @endif

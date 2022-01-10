@@ -21,6 +21,8 @@ class HonorController extends Controller
             'users' => User::all(),
             'categories' => Category::all(),
 
+
+
         ]);
     }
 
@@ -45,9 +47,6 @@ class HonorController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
         $golongan = $request->golongan;
 
         if($golongan == "I" || $golongan == "II")
@@ -59,11 +58,7 @@ class HonorController extends Controller
         } else if($golongan == "IV")
         {
             $potongan = 15;
-        } else if($golongan == "VI") {
-            $potongan = 15;
         }
-
-
 
         $validatedData =  $request->validate([
             'user_id' => 'required',

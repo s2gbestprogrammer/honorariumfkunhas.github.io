@@ -36,16 +36,22 @@
                     </li>
                     @endcan
                     @can('dosen')
-                    <li><a href="/dashboard/dosen/" aria-expanded="false">
+                    <li><a href="{{route('dashboard.dosen')}}" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">Beranda  </span>
                     </a>
                     </li>
-                    <li><a href="/dashboard/dosen/feedback" aria-expanded="false">
+                    <li><a href="{{route('feedback.index')}}" aria-expanded="false">
                         <i class="fas fa-heart"></i>
                         <span class="nav-text">Feedback</span>
                     </a>
                     </li>
+                    <li><a href="{{route('dosen.honor.get', auth()->user()->id)}}" aria-expanded="false">
+                        <i class="fas fa-heart"></i>
+                        <span class="nav-text">Honor</span>
+                    </a>
+                    </li>
+
                     @endcan
 
 

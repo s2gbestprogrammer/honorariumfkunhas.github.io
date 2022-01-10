@@ -19,6 +19,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+
     protected $fillable = [
         'name',
         'golongan',
@@ -34,8 +36,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Division::class);
     }
+
     public function honor()
     {
         return $this->hasMany(Honor::class)->orderBy('created_at', 'DESC');
     }
+
 }

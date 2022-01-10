@@ -2,12 +2,17 @@
 @section('content')
 
 <div class="content-body">
+    @if(session()->has('success'))
+    <div class="alert alert-success m-3" role="alert">
+        {{session('success')}}
+    </div>
+    @endif
     <div class="container-fluid">
 
         <div class="row page-titles">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">Email</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Compose</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Feedback</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">dosen</a></li>
             </ol>
         </div>
 
@@ -21,9 +26,7 @@
                                 <form action="{{route('feedback.store')}}" method="post">
                                     @csrf
 
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control bg-transparent" placeholder=" To:" name="kepada">
-                                    </div>
+
                                     <div class="mb-3">
                                         <input type="text" class="form-control bg-transparent" placeholder=" Subject:" name="title">
                                     </div>

@@ -2,12 +2,18 @@
 @section('content')
 
 <div class="content-body">
-    <div class="container-fluid">
-        @if(session()->has('success'))
+    @if(session()->has('success'))
         <div class="alert alert-success" role="alert">
             {{session('success')}}
         </div>
         @endif
+        @if(session()->has('fail'))
+        <div class="alert alert-fail" role="alert">
+            {{session('fail')}}
+        </div>
+        @endif
+    <div class="container-fluid">
+
         <div class="row page-titles">
 
             <ol class="breadcrumb">
@@ -71,9 +77,9 @@
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
-                            <form action="/password" method="post">
+                            <form action="{{route('change.passwords')}}" method="post">
                                 @csrf
-                                @method('put')
+
 
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Username</label>

@@ -20,6 +20,7 @@ class CreateHonorsTable extends Migration
             $table->double('potongan');
             $table->double('jumlah_diterima');
             $table->foreignId('category_id');
+            $table->date('date')->default(now());
             $table->timestamps();
         });
     }
