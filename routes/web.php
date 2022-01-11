@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminFeedbackController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\FeedbackController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Models\Category;
+use App\Models\Division;
 use App\Models\Feedback;
 use App\Models\Honor;
 use App\Models\User;
@@ -38,7 +40,7 @@ if(auth()->user() == null)
 } else if(auth()->user()->role == 'dosen') {
     return redirect('/dashboard/dosen');
 } else if(auth()->user()->role == 'admin') {
-   return redirect('/dashboard/dosen');
+   return redirect('/dashboard/admin');
 }
 
 
@@ -46,10 +48,31 @@ if(auth()->user() == null)
 
 Route::get('/dashboard/admin', function () {
 
+    $user_count = User::where('role', 'dosen')->count();
+
+    $honordb_date = Honor::all();
+    $date_now = now()->format('M/Y');
+
+    $array = array();
+    foreach( $honordb_date as $honordb) {
+     $bulantahun = $honordb->created_at->format('M/Y');
+
+     if($bulantahun == $date_now)
+     {
+         $array[] = $honordb->created_at->format('M/Y');
+     }
+
+    }
+
+
+
     return view('dashboard.admin.index', [
         "title" => "Dashboard | Admin",
         "users" => User::all(),
+        "honor_bulan" => count($array),
+        "not_honor_bulan" => $user_count - count($array),
         "jumlah_dosen" => User::where('role', 'dosen')->count(),
+
         "jumlah_honor_keseluruhan" => Honor::all()->sum('jumlah_honor')
     ]);
 })->middleware('auth')->name('dashboard.admin');
@@ -59,7 +82,7 @@ Route::get('/dashboard/dosen', function () {
     return view('dashboard.dosen.index', [
         "title" => "Dashboard | Dosen",
         "users" => User::where('id', auth()->user()->id)->get(),
-        "sum_honor" => Honor::all()->sum('jumlah_diterima'),
+        "sum_honor" => Honor::where('user_id', auth()->user()->id)->sum('jumlah_diterima'),
         "feedback" => Feedback::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->get(),
         "honor" => Honor::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->first(),
     ]);
@@ -78,7 +101,7 @@ Route::get('/printhonor', function(){
 })->name('print.honor')->middleware('isAdmin');
 Route::post('/searchByDate', function(Request $request){
 
-$search = Honor::where('date', '>=',$request->from)->where('date', '<=',$request->to)->get();
+$search = Honor::where('created_at', '>=',$request->from)->where('date', '<=',$request->to)->get();
 
 return view('dashboard.admin.print.print', [
     'search' => $search
@@ -106,9 +129,20 @@ Route::post('/changepassword', function (Request $request) {
 })->name('change.passwords');
 
 
+
 Route::resource('/dashboard/admin/users', UserController::class)->middleware('isAdmin');
 Route::resource('/dashboard/admin/profile', ProfileController::class)->middleware('isAdmin');
 Route::resource('/dashboard/admin/divisions', DivisionController::class)->middleware('isAdmin');
+Route::resource('/dashboard/admin/adminfeedback', AdminFeedbackController::class)->middleware('isAdmin');
+
+Route::post('dashboard/admin/editdivision', function(Request $request){
+    $validateData = $request->validate([
+        'name' => 'required'
+    ]);
+    Division::where('id', $request->id)->update($validateData);
+    return back()->with('success' , 'berhasil mengubah divisi');
+
+})->name('edit.division')->middleware('isAdmin');
 Route::resource('/dashboard/admin/categories', CategoryController::class)->middleware('isAdmin');
 
 Route::post('/dashboard/admin/editcategories', function(Request $request){
@@ -118,6 +152,7 @@ Route::post('/dashboard/admin/editcategories', function(Request $request){
     ]);
 
     Category::where('id', $request->id)->update($validateData);
+
     return back()->with('success', 'berhasil mengubah data category');
 })->name('edit.category')->middleware('isAdmin');
 Route::resource('/dashboard/admin/honor', HonorController::class)->middleware('isAdmin');

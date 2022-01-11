@@ -9,7 +9,7 @@ class Honor extends Model
 {
     use HasFactory;
 
-    protected $with = ['user'];
+
 
     protected $fillable = [
         'user_id',
@@ -21,7 +21,7 @@ class Honor extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->orderBy('created_at', 'DESC');
     }
 
     public function category()

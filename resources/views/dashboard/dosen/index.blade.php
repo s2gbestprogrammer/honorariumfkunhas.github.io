@@ -41,6 +41,9 @@
                         {{$f->body}} <br><hr>
                         @endif
                         @endforeach
+                        @if ($f->balasan == '')
+                            <p>belum ada balasan dari admin</p>
+                        @endif
                     </div>
                 </div>
             </div>

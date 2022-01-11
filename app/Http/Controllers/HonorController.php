@@ -16,9 +16,18 @@ class HonorController extends Controller
      */
     public function index()
     {
+
+        $users = User::latest();
+
+        // return $users->join('divisions', 'users.division_id', '=' , 'divisions.id')->get();
+
+        if(request('search')) {
+            $users->where('name', 'like', '%' . request('search') . '%')
+            ->orWhere('golongan', 'like', '%' . request('search') . '%');
+        }
         return view('dashboard.admin.honor.index', [
             'honors' => Honor::all(),
-            'users' => User::all(),
+            'users' => $users->get(),
             'categories' => Category::all(),
 
 

@@ -49,7 +49,10 @@
                         <?php $nomor = 1; ?>
                         @foreach($honors as $honor)
 
+
                         <tr>
+
+
                             <td>{{$nomor++}}</td>
                             <td>{{$honor->created_at}}</td>
                             <td>{{$honor->user->name}}</td>
@@ -57,6 +60,7 @@
                             <td>{{$honor->potongan}}</td>
                             <td>{{$honor->jumlah_diterima}}</td>
                             <td>{{$honor->category->name}}</td>
+
                             <td>{{$honor->user->rekening}}</td>
                             <td>{{$honor->user->bank}}</td>
 

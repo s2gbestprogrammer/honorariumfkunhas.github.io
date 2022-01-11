@@ -80,7 +80,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('dashboard.admin.users.edit', [
-            'user' => $user
+            'user' => $user,
+            'divisions' => Division::all()
         ]);
     }
 
@@ -93,7 +94,22 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+
+
+        $validateData = $request->validate([
+            'name' => 'required|max:255|min:3',
+            'username' => 'required|min:3',
+            'golongan' => 'required',
+            'division_id' => 'required',
+            'rekening' => 'required',
+            'bank' => 'required',
+            'role' => 'required',
+        ]);
+
+        User::where('id', $user->id)->update($validateData);
+
+
+        return redirect()->route('users.index');
     }
 
     /**

@@ -15,7 +15,7 @@ class CreateHonorsTable extends Migration
     {
         Schema::create('honors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->double('jumlah_honor');
             $table->double('potongan');
             $table->double('jumlah_diterima');

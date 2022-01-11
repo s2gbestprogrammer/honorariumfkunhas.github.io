@@ -33,6 +33,87 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         ]);
 
+        User::Create([
+            'name' => 'Dr. Idham Jaya Ganda. Sp.A(K)',
+            'golongan' => 'IV',
+            'division_id' => 2,
+            'username' => 'idhamjaya',
+            'password' => bcrypt('12345'),
+            'rekening' => '0219903867',
+            'bank' => 'BNI',
+            'role' => 'dosen'
+        ]);
+        User::Create([
+            'name' => 'Dr. Hadia Angriani M, Sp.A(K)',
+            'golongan' => 'IV',
+            'division_id' => 2,
+            'username' => 'hadiaangriani',
+            'password' => bcrypt('12345'),
+            'rekening' => '0094580081',
+            'bank' => 'BNI',
+            'role' => 'dosen'
+        ]);
+        User::Create([
+            'name' => 'dr. Setia budi selekede, Sp.A(K)',
+            'golongan' => 'IV',
+            'division_id' => 2,
+            'username' => 'setiabudi',
+            'password' => bcrypt('12345'),
+            'rekening' => '082789305',
+            'bank' => 'BNI',
+            'role' => 'dosen'
+        ]);
+        User::Create([
+            'name' => 'Dr. dr. Martira maddepungeng Sp.A(K)',
+            'golongan' => 'IV',
+            'division_id' => 2,
+            'username' => 'martira',
+            'password' => bcrypt('12345'),
+            'rekening' => '73127692',
+            'bank' => 'BNI',
+            'role' => 'dosen'
+        ]);
+        User::Create([
+            'name' => 'Dr. dr. Ema Alasiry, Sp.A(K)',
+            'golongan' => 'IV',
+            'division_id' => 2,
+            'username' => 'emaalasiry',
+            'password' => bcrypt('12345'),
+            'rekening' => '0223702462',
+            'bank' => 'BNI',
+            'role' => 'dosen'
+        ]);
+        User::Create([
+            'name' => 'dr. Ratira Dewi Artati, Sp.A(K)',
+            'golongan' => 'IV',
+            'division_id' => 2,
+            'username' => 'ratira',
+            'password' => bcrypt('12345'),
+            'rekening' => '237120035',
+            'bank' => 'BNI',
+            'role' => 'dosen'
+        ]);
+        User::Create([
+            'name' => 'dr. Nadira Rasyid Ridha, Sp.A(K)',
+            'golongan' => 'III',
+            'division_id' => 2,
+            'username' => 'nadirarasyid',
+            'password' => bcrypt('12345'),
+            'rekening' => '0172136570',
+            'bank' => 'BNI',
+            'role' => 'dosen'
+        ]);
+        User::Create([
+            'name' => 'dr. Amiruddin L, Sp.A(K)',
+            'golongan' => 'III',
+            'division_id' => 2,
+            'username' => 'amiruddin',
+            'password' => bcrypt('12345'),
+            'rekening' => '64500758',
+            'bank' => 'BNI',
+            'role' => 'dosen'
+        ]);
+
         Division::Create([
             'name' => 'none'
         ]);

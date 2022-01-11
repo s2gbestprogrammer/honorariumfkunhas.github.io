@@ -14,19 +14,22 @@
         <!-- row -->
         <div class="container-fluid">
           <div
-            class="d-flex justify-content-between align-items-center flex-wrap"
-          >
+            class="d-flex justify-content-between align-items-center flex-wrap">
+            <form action="/dashboard/admin/honor">
             <div class="input-group contacts-search mb-4">
               <input
                 type="text"
+                name="search"
                 class="form-control"
                 placeholder="Search here..."
+                value="{{request('search')}}"
               />
               <span class="input-group-text"
                 ><a href="javascript:void(0)"
-                  ><i class="flaticon-381-search-2"></i></a
+                  ><button type="submit" class="btn border-0"><i class="flaticon-381-search-2"></i></button></a
               ></span>
             </div>
+            </form>
             <div class="mb-4">
                 <a
                   href="{{route('honor.create')}}"
@@ -108,7 +111,6 @@
 
                             Golongan : {{$user->golongan}}
 
-                          @if($user->role == 'dosen')
 
                            <?php
                           $gos = $user->honor->first();
@@ -121,13 +123,17 @@
                             @endphp
 
                             @if ($sekarang == $honor_now)
-
-                            <p class="fs-12 fw-bold">Honor terbaru bulan ini : {{'Rp.'.$gos->jumlah_diterima}}</b> </p>
+                            @php
+                                $hidden = "hidden";
+                            @endphp
+                            <p class="fs-12 fw-bold">  Honor terbaru bulan ini : {{'Rp.'.number_format($gos->jumlah_diterima)}}</b> </p>
+                            @else
+                            @php
+                                $hidden = "";
+                            @endphp
                             @endif
                             @endif
-
-
-                          @endif
+                            <p class="fs-12 text-danger" {{$hidden}}>Belum mendapatkan honor bulan ini</p>
 
                           <ul>
 

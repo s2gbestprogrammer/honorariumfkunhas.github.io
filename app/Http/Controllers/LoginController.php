@@ -26,7 +26,7 @@ class LoginController extends Controller
             }
         }
 
-        return back()->with('fail', 'have a problem');
+        return back()->with('fail', 'username atau password salah');
     }
 
     public function logout(Request $request)

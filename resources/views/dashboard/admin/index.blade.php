@@ -32,7 +32,9 @@
                         <div class="card">
                             <div class="card-header">Honor</div>
                             <div class="card-body">
-                                <p>Jumlah honor keselurah yang telah diberikan ke dosen sebesar :<br> {{$jumlah_honor_keseluruhan}}</p>
+                                <p>Jumlah honor keseluruhan yang telah diberikan ke dosen sebesar :<br>Rp. {{number_format($jumlah_honor_keseluruhan)}}</p>
+                                <p>Dosen yang diberikan honor bulan ini sebanyak : {{$honor_bulan}}</p>
+                                <p>Dosen yang belum diberikan honor bulan ini sebanyak : {{$not_honor_bulan}}</p>
                             </div>
                         </div>
                     </div>

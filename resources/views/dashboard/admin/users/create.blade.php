@@ -89,13 +89,21 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Username</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="username">
+                                        <input type="text" class="form-control @error('username')
+                                        is-invalid
+                                    @enderror" name="username">
+                                    @error('username')
+                                    <p class="fs-11">{{$message}}</p>
+                                @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Password</label>
                                     <div class="col-sm-9">
-                                        <input type="password" class="form-control" value="" name="password">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" value="" name="password">
+                                        @error('password')
+                                            <p class="fs-11">{{$message}}</p>
+                                        @enderror
                                     </div>
                                 </div>
 

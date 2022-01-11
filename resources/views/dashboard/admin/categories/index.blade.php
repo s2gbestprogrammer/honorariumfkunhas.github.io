@@ -4,7 +4,7 @@
 @section('content')
 <div class="content-body">
     @if(session()->has('success'))
-<div class="alert alert-success" role="alert">
+<div class="alert alert-success m-3" role="alert">
     {{session('success')}}
 </div>
 @endif
@@ -12,15 +12,11 @@
 <div class="col-12">
     <div class="ms-3 mb-3">
 
-        <a href="{{route('categories.create')}}" class="btn btn-primary"><b> + Tambah Kategori</b></a>
+        <a href="#" id="btn-create" data-bs-target="#modal-create" data-bs-toggle="modal" class="btn btn-primary"><b> + Tambah Kategori</b></a>
 
     </div>
     <div class="card">
-        @if(session()->has('success'))
-        <div class="alert alert-success" role="alert">
-            {{session('success')}}
-        </div>
-        @endif
+
 
 
         <div class="card-body">
@@ -71,21 +67,61 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Beri Honor</h5>
+                <h5 class="modal-title">Edit Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal">
                 </button>
             </div>
             <div class="modal-body" id="modalpay">
-
+            <form action="{{route('edit.category')}}" method="post">
+            @csrf
+            <input type="hidden" value="" class="form-control" id="id" name="id">
+            <input type="text" value="" class="form-control" id="name" name="name">
             </div>
-            {{-- <div class="modal-footer">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
-        </form> --}}
+        </form>
         </div>
     </div>
 </div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modal-create">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                </button>
+            </div>
+            <div class="modal-body" id="modalpay">
+            <form action="{{route('categories.store')}}" method="post">
+            @csrf
+            <div class="mb-3">
+                <label for="">Nama Kategori</label>
+                <input type="text" value="" class="form-control" id="name" name="name">
+            </div>
+            <div class="mb-3 col-6">
+                <label for="">Type Kategori</label>
+                <select name="type" id="type" class="default-select form-control wide">
+                    <option value=""></option>
+                    <option value="semester">semester</option>
+                    <option value="bulan">bulan</option>
+                    <option value="kegiatan">kegiatan</option>
+                    <option value="tertentu">tertentu</option>
+                </select>
+            </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
 <form action="{{route('categories.store')}}"></form>
 <script>
     $(document).ready(function(){
@@ -96,25 +132,11 @@
                 $.ajax({
                     success: function(response) {
                         $('#payModal').modal('show');
-                        $('.modal-body').html(`<form  action = "{{route('edit.category')}}" method="post">
-                        @csrf
-
-                        <div class="mb-3">
-                        <label for="id">Nama Keterangan :</label>
-                        <input type="hidden" class="form-control" name="id" value="`+category_id+`">
-                        <input type="text" class="form-control" name="name" value="`+category_name+`">
-                        </div>
-                        <div class="modal-footer">
-                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </form>`);
-                        // $('.modal-body').html(`<form action="{{route("categories.store",`+category_id+`)}}" method="post">@csrf<div class="modal-body"><div class="mb-3"><label for="id">ID :</label><input type="text" class="form-control" name="id"> </div><div class="mb-3"> <label for="id">Nama Category :</label> <input type="text" class="form-control" name="name"></div></div>`);
+                        $('#id').val(category_id);
+                        $('#name').val(category_name);
                     }
                 });
             });
-
-
         });
 </script>
 

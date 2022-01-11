@@ -45,7 +45,7 @@ class CategoryController extends Controller
 
         Category::create($validateData);
 
-        return redirect('/dashboard/admin/categories')->with("success", "berhasil menambah kategori");
+        return back()->with("success", "berhasil menambah kategori");
     }
 
     /**
@@ -89,6 +89,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::destroy($category->id);
+
+        return back()->with('success', 'berhasil menghapus');
     }
 }

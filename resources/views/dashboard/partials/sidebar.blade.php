@@ -29,7 +29,7 @@
                         <i class="fas fa-table"></i>
                         <span class="nav-text">Kategori</span>
                     </a>
-                    <li><a href="/dashboard/admin/feedback" aria-expanded="false">
+                    <li><a href="{{route('adminfeedback.index')}}" aria-expanded="false">
                         <i class="fas fa-heart"></i>
                         <span class="nav-text">Feedback</span>
                     </a>

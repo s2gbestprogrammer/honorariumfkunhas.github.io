@@ -43,7 +43,7 @@ class DivisionController extends Controller
 
         Division::create($validateData);
 
-        return redirect('/dashboard/admin/users')->with('success', "new user has been created");
+        return back()->with('success', "new divisi has been created");
     }
 
     /**
@@ -77,7 +77,7 @@ class DivisionController extends Controller
      */
     public function update(Request $request, Division $division)
     {
-        //
+        return $request;
     }
 
     /**
