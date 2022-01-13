@@ -156,9 +156,7 @@
                   </div>
                   @endforeach
                 </div>
-            <div
-              class="progect-pagination d-flex justify-content-between align-items-center flex-wrap mt-3"
-            >
+            <div class="progect-pagination d-flex justify-content-between align-items-center flex-wrap mt-3">
               <h4 class="mb-3">Showing 10 from 160 data</h4>
               <ul class="pagination mb-3">
                 <li class="page-item page-indicator">
