@@ -6,7 +6,7 @@
                 <img src="{{asset('images/unhas-logo.png')}}" alt="" class="logo-abbr">
 				<div class="brand-title">
 					<h2 class="">FKHU</h2>
-					<span class="brand-sub-title">fakultas kedokteran</span>
+					<span class="brand-sub-title fw-bold">fakultas kedokteran</span>
 				</div>
             </a>
             <div class="nav-control">

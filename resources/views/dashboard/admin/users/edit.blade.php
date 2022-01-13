@@ -22,9 +22,7 @@
 
             <div class="col-xl-6 ">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Edit User</h4>
-                    </div>
+
                     <div class="card-body">
                         <div class="basic-form">
                             <form action="{{route('users.update', $user->id)}}" method="post">
@@ -115,13 +113,14 @@
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <div class="col-sm-6">
-                                        <button type="submit" class="btn btn-primary">Update Profile</button>
-                                    </div>
-
+                                    <button class="btn btn-primary light btn-sl-sm" id="discard" type="submit"><span class="me-2"><i class="fa fa-save"></i></span>Simpan</button>
                                 </div>
 
+
                             </form>
+                            <div class="mb-3 row">
+                                <a href="{{route('users.edit', $user->id)}}" class="btn btn-danger light btn-sl-sm" id="discard" type="a"><span class="me-2"><i class="fa fa-times"></i></span>Batalkan</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,5 +129,9 @@
         </div>
     </div>
 </div>
+
+<script>
+
+</script>
 @endsection
 

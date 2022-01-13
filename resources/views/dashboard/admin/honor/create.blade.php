@@ -34,7 +34,7 @@
                         <tr>
 
                             <td>No</td>
-                            <td>Tanggal</td>
+                            <td>Aksi</td>
                             <td>Nama</td>
                             <td>Jumlah honor</td>
                             <td>Potongan</td>
@@ -42,7 +42,7 @@
                             <td>Keterangan</td>
                             <td>REKENING</td>
                             <td>BANK</td>
-                            <td>Action</td>
+                            <td>Bulan</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,11 +54,20 @@
 
 
                             <td>{{$nomor++}}</td>
-                            <td>{{$honor->created_at}}</td>
+                            <td><div class="d-flex">
+                                <a href="{{route('honor.show',$honor->user->id)}}" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
+                                <form action="{{route('honor.destroy', $honor->id)}}" method="post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="btn btn-danger shadow btn-xs sharp me-1 border-0" onclick="return confirm('are u sure?')"><i class="fas fa-trash"></i></button>
+
+                                </form>
+
+                            </div></td>
                             <td>{{$honor->user->name}}</td>
-                            <td>{{$honor->jumlah_honor}}</td>
-                            <td>{{$honor->potongan}}</td>
-                            <td>{{$honor->jumlah_diterima}}</td>
+                            <td>{{number_format($honor->jumlah_honor)}}</td>
+                            <td>{{number_format($honor->potongan)}}</td>
+                            <td>{{number_format($honor->jumlah_diterima)}}</td>
                             <td>{{$honor->category->name}}</td>
 
                             <td>{{$honor->user->rekening}}</td>
@@ -66,16 +75,7 @@
 
 
                             <td>
-                                <div class="d-flex">
-                                    <a href="{{route('honor.show',$honor->user->id)}}" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
-                                    <form action="{{route('honor.destroy', $honor->id)}}" method="post" class="d-inline">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="btn btn-danger shadow btn-xs sharp me-1 border-0" onclick="return confirm('are u sure?')"><i class="fas fa-trash"></i></button>
-
-                                    </form>
-
-                                </div>
+                                {{$honor->created_at->format('M/y')}}
                             </td>
                         </tr>
                         @endforeach

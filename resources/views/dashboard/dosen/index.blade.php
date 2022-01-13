@@ -24,7 +24,7 @@
             </div>
             <div class="col-6">
                 <div class="card">
-                    <div class="card-header">Total pendapatan</div>
+                    <div class="card-header" >Total pendapatan</div>
                     <div class="card-body">
                         {{'Rp. '. number_format($sum_honor)}}
                     </div>
@@ -39,11 +39,11 @@
 
                         <b>{{$f->title}}</b> <br>
                         {{$f->body}} <br><hr>
+                        @else
+                        <p>belum ada balasan dari admin</p>
                         @endif
                         @endforeach
-                        @if ($f->balasan == '')
-                            <p>belum ada balasan dari admin</p>
-                        @endif
+
                     </div>
                 </div>
             </div>

@@ -72,10 +72,8 @@
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
-
                               </svg>
                             </div>
-
                           </div>
                         </div>
                       </div>
@@ -113,19 +111,23 @@
 
 
                            <?php
-                          $gos = $user->honor->first();
-
+                            $gos = $user->honor->first();
+                          $total_honor = $user->honor->sum('jumlah_honor');
                             $sekarang = now()->format('M/Y');
                           ?>
+
+                          <p class="fs-12">Total honor : Rp.{{number_format($total_honor)}}</p>
                             @if ($gos !== null)
                             @php
                                 $honor_now = $gos->created_at->format('M/Y');
+
                             @endphp
 
                             @if ($sekarang == $honor_now)
                             @php
                                 $hidden = "hidden";
                             @endphp
+
                             <p class="fs-12 fw-bold">  Honor terbaru bulan ini : {{'Rp.'.number_format($gos->jumlah_diterima)}}</b> </p>
                             @else
                             @php
@@ -133,6 +135,8 @@
                             @endphp
                             @endif
                             @endif
+
+
                             <p class="fs-12 text-danger" {{$hidden}}>Belum mendapatkan honor bulan ini</p>
 
                           <ul>
@@ -232,10 +236,9 @@
                     }
                 });
             });
-
-
         });
     </script>
+
 @endsection
 
 

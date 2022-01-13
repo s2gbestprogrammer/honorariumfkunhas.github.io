@@ -22,9 +22,7 @@
 
             <div class="col-xl-6 ">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Tambah User</h4>
-                    </div>
+
                     <div class="card-body">
                         <div class="basic-form">
                             <form action="{{route('users.store')}}" method="post">
@@ -33,15 +31,15 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control"  value="{{old('name')}}" name="name">
+                                        <input type="text" class="form-control can-delete"  value="{{old('name')}}" name="name">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Golongan</label>
                                     <div class="col-sm-6">
-                                        <select name="golongan" id="golongan" class="default-select form-control wide">
+                                        <select name="golongan" id="golongan" class="default-select form-control wide can-deletes">
                                             <option value=""></option>
-                                            <option value="I">I</option>
+                                            <option value="I" >I</option>
                                             <option value="II">II</option>
                                             <option value="III">III</option>
                                             <option value="IV">IV</option>
@@ -51,7 +49,7 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Bagian</label>
                                     <div class="col-sm-6">
-                                        <select name="division_id" id="division_id" class="default-select form-control wide">
+                                        <select name="division_id" id="division_id" class="default-select form-control wide can-deletes" >
                                             <option value=""></option>
                                             @foreach($divisions->skip(1) as $division)
 
@@ -63,13 +61,13 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Rekening</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" value=""  name="rekening">
+                                        <input type="text" class="form-control can-delete" value=""  name="rekening">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">BANK</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control"  value=""  name="bank">
+                                        <input type="text" class="form-control can-delete"  value=""  name="bank">
                                     </div>
                                 </div>
                                 @if(auth()->user()->role == "super-admin")
@@ -108,9 +106,11 @@
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <div class="col-sm-10">
-                                        <button type="submit" class="btn btn-primary">Tambah</button>
-                                    </div>
+                                    <button class="btn btn-primary light btn-sl-sm" id="discard" type="submit"><span class="me-2"><i class="fa fa-save"></i></span>Simpan</button>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <a href="{{route('users.edit', $user->id)}}" class="btn btn-danger light btn-sl-sm" id="discard" type="a"><span class="me-2"><i class="fa fa-times"></i></span>Batalkan</a>
                                 </div>
                             </form>
                         </div>
@@ -121,5 +121,16 @@
         </div>
     </div>
 </div>
+<script>
+
+    $(document).ready(function(){
+            $('.btn-danger').click(function(){
+                $('.form-control').val('');
+                $(".can-deletes").find('select').select2().val('').trigger('change');
+            });
+
+
+        });
+</script>
 @endsection
 

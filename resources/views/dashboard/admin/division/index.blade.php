@@ -13,57 +13,55 @@
     </div>
     @endif
     <div class="container-fluid">
-<div class="col-12">
-    <div class="ms-3 mb-3">
+        <div class="col-12">
+            <div class="ms-3 mb-3">
+                <a href="#" class="btn btn-primary" data-bs-target="#modal-create" data-bs-toggle="modal"><b> + Tambah Bagian</b></a>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" style="font-weight: bold">Daftar Divisi</h4>
+                </div>
 
-        <a href="#" class="btn btn-primary" data-bs-target="#modal-create" data-bs-toggle="modal"><b> + Tambah Bagian</b></a>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example3" class="display" style="min-width: 845px">
+                            <thead>
+                                <tr>
 
-    </div>
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Profile Datatable</h4>
-        </div>
+                                    <th>Name</th>
 
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="example3" class="display" style="min-width: 845px">
-                    <thead>
-                        <tr>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $nomor = 0; ?>
+                                @foreach($divisions->skip(1) as $division)
 
-                            <th>Name</th>
+                                <tr>
 
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $nomor = 0; ?>
-                        @foreach($divisions->skip(1) as $division)
-
-                        <tr>
-
-                            <td>{{$division->name}}</td>
+                                    <td>{{$division->name}}</td>
 
 
-                            <td>
-                                <div class="d-flex">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="{{$division->id}}" data-name="{{$division->name}}" class="btn btn-primary shadow btn-xs sharp me-1 editdivisi"><i class="fas fa-pencil-alt"></i></a>
-                                    <form action="{{route('users.destroy', $division->id)}}" method="post" class="d-inline">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="btn btn-danger shadow btn-xs sharp me-1 border-0" onclick="return confirm('are u sure?')"><i class="fas fa-trash"></i></button>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-edit" data-id="{{$division->id}}" data-name="{{$division->name}}" class="btn btn-primary shadow btn-xs sharp me-1 editdivisi"><i class="fas fa-pencil-alt"></i></a>
+                                            <form action="{{route('users.destroy', $division->id)}}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger shadow btn-xs sharp me-1 border-0" onclick="return confirm('are u sure?')"><i class="fas fa-trash"></i></button>
 
-                                    </form>
+                                            </form>
 
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
     </div>
 </div>
 

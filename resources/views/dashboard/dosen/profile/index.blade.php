@@ -17,9 +17,8 @@
         <div class="row page-titles">
 
             <ol class="breadcrumb">
-
-                <li class="breadcrumb-item active"><a href="javascript:void(0)">{{auth()->user()->role}}</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">profile</a></li>
+                <li class="breadcrumb-item active bold"><a href="javascript:void(0)">{{auth()->user()->role}}</a></li>
+                <li class="breadcrumb-item" ><a href="javascript:void(0)" style="font-weight: 400px">profile</a></li>
             </ol>
         </div>
         <!-- row -->
