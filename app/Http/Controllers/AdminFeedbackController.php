@@ -37,7 +37,13 @@ class AdminFeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'balasan' => 'required'
+        ]);
+
+        Feedback::where('id', $request->id)->update($validatedData);
+
+        return back()->with('success', 'berhasil mengirim balasan');
     }
 
     /**
@@ -72,7 +78,7 @@ class AdminFeedbackController extends Controller
     public function update(Request $request, Feedback $adminfeedback)
     {
 
-
+        return $adminfeedback->id;
 
         Feedback::where('id', $adminfeedback->id)->update(["balasan" =>   $request->balasan[$adminfeedback->id]]);
 

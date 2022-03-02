@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HonorController;
+use App\Http\Controllers\ImportDataDosenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -33,6 +34,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
+
+
 if(auth()->user() == null)
 {
     return view('login');
@@ -41,6 +44,8 @@ if(auth()->user() == null)
     return redirect('/dashboard/dosen');
 } else if(auth()->user()->role == 'admin') {
    return redirect('/dashboard/admin');
+} else {
+    return view('login');
 }
 
 
@@ -93,25 +98,6 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('authentic
 // sesuatu salah krna pke get
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// ADMIN //
-Route::get('/printhonor', function(){
-    return view('dashboard.admin.print.index', [
-        'honors' => Honor::all()
-    ]);
-})->name('print.honor')->middleware('isAdmin');
-Route::post('/searchByDate', function(Request $request){
-
-$search = Honor::where('created_at', '>=',$request->from)->where('date', '<=',$request->to)->get();
-
-return view('dashboard.admin.print.print', [
-    'search' => $search
-]);
-
-
-})->name('print.searchByDate')->middleware('isAdmin');
-
-
-Route::post('getDetailHonor', [HonorController::class, 'show'])->name('get.detail.honor');
 Route::post('/changepassword', function (Request $request) {
     $validateData = $request->validate([
         'password' => 'required',
@@ -128,34 +114,58 @@ Route::post('/changepassword', function (Request $request) {
 
 })->name('change.passwords');
 
+// ADMIN //
+Route::middleware('isAdmin')->group(function() {
 
+    Route::resource('/dashboard/admin/users', UserController::class);
 
-Route::resource('/dashboard/admin/users', UserController::class)->middleware('isAdmin');
-Route::resource('/dashboard/admin/profile', ProfileController::class)->middleware('isAdmin');
-Route::resource('/dashboard/admin/divisions', DivisionController::class)->middleware('isAdmin');
-Route::resource('/dashboard/admin/adminfeedback', AdminFeedbackController::class)->middleware('isAdmin');
+    Route::resource('/dashboard/admin/profile', ProfileController::class);
 
-Route::post('dashboard/admin/editdivision', function(Request $request){
-    $validateData = $request->validate([
-        'name' => 'required'
-    ]);
-    Division::where('id', $request->id)->update($validateData);
-    return back()->with('success' , 'berhasil mengubah divisi');
+    Route::resource('/dashboard/admin/divisions', DivisionController::class);
 
-})->name('edit.division')->middleware('isAdmin');
-Route::resource('/dashboard/admin/categories', CategoryController::class)->middleware('isAdmin');
+    Route::resource('/dashboard/admin/adminfeedback', AdminFeedbackController::class);
 
-Route::post('/dashboard/admin/editcategories', function(Request $request){
+    Route::resource('/dashboard/admin/categories', CategoryController::class);
 
-    $validateData = $request->validate([
-        'name' => 'required'
-    ]);
+    Route::resource('/dashboard/admin/honor', HonorController::class);
 
-    Category::where('id', $request->id)->update($validateData);
+    Route::post('importdatadosen', [ImportDataDosenController::class, 'importdatadosen'])->name('importdatadosen');
 
-    return back()->with('success', 'berhasil mengubah data category');
-})->name('edit.category')->middleware('isAdmin');
-Route::resource('/dashboard/admin/honor', HonorController::class)->middleware('isAdmin');
+    Route::post('getDetailHonor', [HonorController::class, 'show'])->name('get.detail.honor');
+
+    Route::post('dashboard/admin/editdivision', function(Request $request){
+        $validateData = $request->validate([
+            'name' => 'required'
+        ]);
+        Division::where('id', $request->id)->update($validateData);
+        return back()->with('success' , 'berhasil mengubah divisi');
+    })->name('edit.division');
+
+    Route::post('/dashboard/admin/editcategories', function(Request $request){
+
+        $validateData = $request->validate([
+            'name' => 'required'
+        ]);
+        Category::where('id', $request->id)->update($validateData);
+        return back()->with('success', 'berhasil mengubah data category');
+    })->name('edit.category');
+
+    Route::get('/printhonor', function(){
+
+        return view('dashboard.admin.print.index', [
+            'honors' => Honor::all()
+        ]);
+    })->name('print.honor');
+
+    Route::post('/searchByDate', function(Request $request){
+
+        $search = Honor::where('created_at', '>=',$request->from)->where('date', '<=',$request->to)->get();
+        return view('dashboard.admin.print.print', [
+            'search' => $search
+        ]);
+    })->name('print.searchByDate')->middleware('isAdmin');
+
+});
 
 
 //DOSEN

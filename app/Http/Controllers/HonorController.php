@@ -16,21 +16,21 @@ class HonorController extends Controller
      */
     public function index()
     {
-
-        $users = User::latest();
-
-        // return $users->join('divisions', 'users.division_id', '=' , 'divisions.id')->get();
+        if(auth()->user()->role == 'dosen')
+        {
+            abort(403);
+        }
+         $search = request('search');
+        $users = User::orderBy('updated_at', 'ASC')->paginate(10);
 
         if(request('search')) {
-            $users->where('name', 'like', '%' . request('search') . '%')
-            ->orWhere('golongan', 'like', '%' . request('search') . '%');
+            $users = User::where('name', 'like', '%' .$search.'%')->paginate(10);
         }
+
         return view('dashboard.admin.honor.index', [
             'honors' => Honor::all(),
-            'users' => $users->get(),
+            'users' => $users,
             'categories' => Category::all(),
-
-
 
         ]);
     }
@@ -56,6 +56,10 @@ class HonorController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()->role == 'dosen')
+        {
+            abort(403);
+        }
         $golongan = $request->golongan;
 
         if($golongan == "I" || $golongan == "II")
@@ -81,10 +85,10 @@ class HonorController extends Controller
 
         $validatedData['jumlah_diterima'] = $request->jumlah_honor - $hasil_potongan;
 
-
-
     Honor::create($validatedData);
-
+    User::where('id', $request->user_id)->update([
+        'updated_at' => now()
+    ]);
     return redirect('dashboard/admin/honor/create')->with('success', 'berhasil menambah honor ');
 
 
@@ -99,6 +103,10 @@ class HonorController extends Controller
      */
     public function show(User $honor)
     {
+        if(auth()->user()->role == 'dosen')
+        {
+            abort(403);
+        }
         return view('dashboard.admin.honor.show-user', [
             'users' => $honor,
             'honors' => Honor::where('user_id' , $honor->id)->orderBy('created_at', 'DESC')->get()
@@ -113,6 +121,10 @@ class HonorController extends Controller
      */
     public function edit(User $honor)
     {
+        if(auth()->user()->role == 'dosen')
+        {
+            abort(403);
+        }
         return view('dashboard.admin.honor.show', [
             "users" => $honor,
             'keterangan' => Category::all()
@@ -139,6 +151,10 @@ class HonorController extends Controller
      */
     public function destroy($id)
     {
+        if(auth()->user()->role == 'dosen')
+        {
+            abort(403);
+        }
         Honor::destroy($id);
 
         return back();

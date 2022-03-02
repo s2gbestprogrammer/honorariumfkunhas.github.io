@@ -32,9 +32,9 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$honor->created_at->format('M/d/Y')}}</td>
-                                        <td>{{$honor->jumlah_honor}}</td>
+                                        <td>{{number_format($honor->jumlah_honor)}}</td>
                                         <td>{{$honor->potongan}}</td>
-                                        <td>{{$honor->jumlah_diterima}}</td>
+                                        <td>{{number_format($honor->jumlah_diterima)}}</td>
                                         <td>{{$honor->category->name}}</td>
 
                                     </tr>

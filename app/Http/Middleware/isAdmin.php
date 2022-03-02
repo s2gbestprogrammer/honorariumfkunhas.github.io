@@ -16,11 +16,12 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check() || auth()->user()->role !== 'admin')
+    if(auth()->check() || auth()->user()->role == 'admin' || auth()->user()->role == 'super-admin')
         {
+            return $next($request);
+        } else {
             abort(403);
         }
 
-        return $next($request);
     }
 }

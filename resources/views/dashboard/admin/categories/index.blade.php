@@ -12,7 +12,7 @@
 <div class="col-12">
     <div class="ms-3 mb-3">
 
-        <a href="#" id="btn-create" data-bs-target="#modal-create" data-bs-toggle="modal" class="btn btn-primary"><b> + Tambah Kategori</b></a>
+        <a href="#" id="btn-create" data-bs-target="#modal-create" data-bs-toggle="modal" class="btn btn-primary"><b> + TAMBAH KATEGORI</b></a>
 
     </div>
     <div class="card">
@@ -25,7 +25,7 @@
                     <thead>
                         <tr>
 
-                            <th>Name</th>
+                            <th>NAMA KATEGORI / KETERANGAN</th>
 
                             <th>Action</th>
                         </tr>

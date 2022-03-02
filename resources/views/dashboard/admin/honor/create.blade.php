@@ -8,18 +8,18 @@
 <div class="col-12">
     <div class="ms-3 mb-3 d-inline">
 
-        <a href="{{route('honor.index')}}" class="btn btn-primary"><b> + Tambah Honor</b></a>
+        <a href="{{route('honor.index')}}" class="btn btn-primary"><b> + TAMBAH HONOR   </b></a>
 
     </div>
     <div class="ms-3 mb-3 d-inline">
 
-        <a href="{{route('print.honor')}}" class="btn btn-primary"><b> PRINT </b></a>
+        <a href="{{route('print.honor')}}" class="btn btn-primary"><b> <i class="fas fa-print"></i> PRINT </b></a>
 
     </div>
     <div class="card mt-3">
 
         <div class="card-header">
-            <h4 class="card-title">Data honor</h4>
+            <h4 class="card-title"> <b>Data honor</b></h4>
         </div>
 
         <div class="card-body">

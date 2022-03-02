@@ -33,8 +33,8 @@
             <div class="mb-4">
                 <a
                   href="{{route('honor.create')}}"
-                  class="btn btn-primary btn-rounded fs-18"
-                  >DAFTAR HONOR</a
+                  class="btn btn-primary btn-md"
+                  ><i class="fas fa-list"></i> Honor</a
                 >
               </div>
             {{-- <div class="input-group contacts-search mb-4">
@@ -155,28 +155,10 @@
                     </div>
                   </div>
                   @endforeach
+
                 </div>
-            <div class="progect-pagination d-flex justify-content-between align-items-center flex-wrap mt-3">
-              <h4 class="mb-3">Showing 10 from 160 data</h4>
-              <ul class="pagination mb-3">
-                <li class="page-item page-indicator">
-                  <a class="page-link" href="javascript:void(0)">
-                    <i class="fas fa-angle-double-left me-2"></i>Previous</a
-                  >
-                </li>
-                <li class="page-item">
-                  <a class="active" href="javascript:void(0)">1</a>
-                  <a class="" href="javascript:void(0)">2</a>
-                  <a class="" href="javascript:void(0)">3</a>
-                  <a class="" href="javascript:void(0)">4</a>
-                </li>
-                <li class="page-item page-indicator">
-                  <a class="page-link" href="javascript:void(0)">
-                    Next<i class="fas fa-angle-double-right ms-2"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
+
+                {{$users->links('pagination::bootstrap-4')}}
           </div>
         </div>
       </div>
@@ -229,6 +211,7 @@
                         $('#modalpay').html(`<input type="hidden" name="user_id" class="form-control" placeholder="amount" value="`+userid+`">`+
                         `<input type="number" name="jumlah_honor" class="form-control" value="" placeholder="Jumlah Honor">` + `<br>`+
                         `<input type="hidden" value="`+golongan+`" name="golongan">` +
+                        `<input type="hidden" value="`+userid+`" name="user_id">` +
                         `<p>Kirim ke : <b> `+rekening+` | `+bank+` </b></p>`
                         );
                     }

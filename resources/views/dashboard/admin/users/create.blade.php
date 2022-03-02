@@ -38,7 +38,7 @@
                                     <label class="col-sm-3 col-form-label">Golongan</label>
                                     <div class="col-sm-6">
                                         <select name="golongan" id="golongan" class="default-select form-control wide can-deletes">
-                                            <option value=""></option>
+                                            <option value="None">Tidak ada</option>
                                             <option value="I" >I</option>
                                             <option value="II">II</option>
                                             <option value="III">III</option>
@@ -110,8 +110,9 @@
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <a href="{{route('users.edit', $user->id)}}" class="btn btn-danger light btn-sl-sm" id="discard" type="a"><span class="me-2"><i class="fa fa-times"></i></span>Batalkan</a>
+                                    <a href="" class="btn btn-danger light btn-sl-sm" id="discard" type="a"><span class="me-2"><i class="fa fa-times"></i></span>Batalkan</a>
                                 </div>
+
                             </form>
                         </div>
                     </div>

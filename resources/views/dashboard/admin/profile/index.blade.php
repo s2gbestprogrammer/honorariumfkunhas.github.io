@@ -61,9 +61,11 @@
                                 </div>
 
                                 <div class="mb-3 row">
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-6">
                                         <button type="submit" class="btn btn-primary">Update profile</button>
+                                        <a href="{{route('profile.index')}}" class="btn btn-danger">Batal</a>
                                     </div>
+
                                 </div>
                             </form>
                         </div>
@@ -103,6 +105,7 @@
                                 <div class="mb-3 row">
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-primary">Update Password</button>
+                                        <a href="{{route('profile.index')}}" class="btn btn-danger">Batal</a>
                                     </div>
                                 </div>
                             </form>

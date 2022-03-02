@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="ms-3 mb-3">
-                    <a href="{{route('users.create')}}" class="btn btn-primary"><b> + Tambah Dosen</b></a>
+                    <a href="{{route('users.create')}}" class="btn btn-primary"><b> <i class="fas fa-user-plus"></i>  &nbsp; Dosen </b></a>
                 </div>
                 <div class="card">
                     @if(session()->has('success'))
@@ -18,6 +18,12 @@
                     </div>
 
                     <div class="card-body">
+                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+
                         <div class="table-responsive">
                             <table id="example3" class="display" style="min-width: 845px">
                                 <thead>
@@ -60,7 +66,7 @@
                                                 <form action="{{route('users.destroy', $user->id)}}" method="post" class="d-inline">
                                                     @method('delete')
                                                     @csrf
-                                                    <button class="btn btn-danger shadow btn-xs sharp me-1 border-0" onclick="return confirm('are u sure?')"><i class="fas fa-trash"></i></button>
+                                                    <button class="btn btn-danger shadow btn-xs sharp me-1 border-0" onclick="return confirm('Jika anda menghapus ini maka seluruh data honornya akan terhapus, Apakah anda yakin menghapus ini?')"><i class="fas fa-trash"></i></button>
 
                                                 </form>
 
@@ -76,8 +82,36 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{{route('importdatadosen')}}" method="post" enctype="multipart/form-data">
+            @csrf
+
+            <div class="form-group">
+                <label for="">Import Data Dosen</label>
+                <input type="file" name="file" id="file" class="form-control">
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    @endsection
 
 <script>
 

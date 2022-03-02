@@ -1,8 +1,4 @@
-@if(session()->has('success'))
-<div class="alert alert-success" role="alert">
-    {{session('success')}}
-</div>
-@endif
+
 
 @extends('dashboard.app')
 @section('content')
@@ -15,7 +11,7 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="ms-3 mb-3">
-                <a href="#" class="btn btn-primary" data-bs-target="#modal-create" data-bs-toggle="modal"><b> + Tambah Bagian</b></a>
+                <a href="#" class="btn btn-primary" data-bs-target="#modal-create" data-bs-toggle="modal"><b> + TAMBAH BAGIAN</b></a>
             </div>
             <div class="card">
                 <div class="card-header">

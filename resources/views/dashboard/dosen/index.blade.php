@@ -51,3 +51,45 @@
     </div>
 </div>
 @endsection
+
+{{-- <div class="card">
+    <div class="card-header"><h3><b>Feedback</b></h3></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="example3" class="display" style="min-width: 845px">
+
+                <tbody>
+
+                    @foreach ($feedbacks as $feedback)
+                    <tr>
+                        <form action="{{route('adminfeedback.update', $feedback->id)}}" method="post">
+                            @csrf
+                            @method('put')
+                        <td>
+                        <div class="email-list mt-3">
+                        <div class="message">
+                            <div>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#sendmodal"
+                                data-created_at="{{$feedback->created_at}}"
+                                data-id="{{$feedback->id}}"
+                                data-name="{{$feedback->user->name}}"
+                                data-title="{{$feedback->title}}"
+                                data-body="{{$feedback->body}}"
+                                data-balasan="{{$feedback->balasan}}"
+                                 class="col-mail fs-15">
+                                    <div class="subject"> <b class="text-black">{{$feedback->user->name}}.</b> {{$feedback->title}} , {{$feedback->body}} <br><b class="text-black">{{$feedback->created_at}}</b></div>
+                                </a>
+                            </div>
+                        </div>
+                        </div>
+                        </td>
+
+
+                    </form>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> --}}
