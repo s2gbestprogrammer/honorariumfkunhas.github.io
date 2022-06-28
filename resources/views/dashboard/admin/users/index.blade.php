@@ -19,9 +19,11 @@
 
                     <div class="card-body">
                     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Import Data Dosen
+                        </button>
+
+                        <br><br>
 
 
                         <div class="table-responsive">
@@ -30,12 +32,13 @@
                                     <tr>
 
                                         <th>Name</th>
+                                        <th>Username</th>
                                         <th>Golongan</th>
+                                        <th>Fungsional</th>
                                         <th>Bagian</th>
                                         <th>Rekening</th>
                                         <th>Bank</th>
 
-                                        <th>Joining Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -54,11 +57,12 @@
                                     <tr {{$hidden}}>
 
                                         <td>{{$user->name}}</td>
+                                        <td>{{$user->username}}</td>
                                         <td>{{$user->golongan}}</td>
-                                        <td>{{$user->division->name}}</td>
+                                        <td>{{ $user->fungsional }}</td>
+                                        <td>{{$user->division_id}}</td>
                                         <td>{{$user->rekening}}</td>
                                         <td>{{$user->bank}}</td>
-                                        <td>{{$user->created_at}}</td>
 
                                         <td>
                                             <div class="d-flex">
@@ -88,23 +92,28 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Import Data Dosen</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="{{route('importdatadosen')}}" method="post" enctype="multipart/form-data">
             @csrf
 
+            <div class="form-group mb-3">
+            <b class="text-primary"><a href="{{asset('datadosen.xlsx')}}">Download Format Excel</a></b>
+            </div>
+
             <div class="form-group">
                 <label for="">Import Data Dosen</label>
                 <input type="file" name="file" id="file" class="form-control">
             </div>
 
-          </form>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Import</button>
+        </form>
         </div>
       </div>
     </div>

@@ -36,13 +36,14 @@
                             <td>No</td>
                             <td>Aksi</td>
                             <td>Nama</td>
-                            <td>Jumlah honor</td>
+                            <td>Jumlah Kotor</td>
                             <td>Potongan</td>
-                            <td>Jumlah Diterima</td>
-                            <td>Keterangan</td>
+                            <td>Jumlah Bersih</td>
+                            <td>Kategori</td>
                             <td>REKENING</td>
                             <td>BANK</td>
                             <td>Bulan</td>
+                            <td>Keterangan</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,7 +55,8 @@
 
 
                             <td>{{$nomor++}}</td>
-                            <td><div class="d-flex">
+                            <td>
+                                <div class="d-flex">
                                 <a href="{{route('honor.show',$honor->user->id)}}" class="btn btn-success shadow btn-xs sharp me-1"><i class="fas fa-eye"></i></a>
                                 <form action="{{route('honor.destroy', $honor->id)}}" method="post" class="d-inline">
                                     @method('delete')
@@ -65,9 +67,9 @@
 
                             </div></td>
                             <td>{{$honor->user->name}}</td>
-                            <td>{{number_format($honor->jumlah_honor)}}</td>
+                            <td>{{number_format($honor->jumlah_kotor)}}</td>
                             <td>{{number_format($honor->potongan)}}</td>
-                            <td>{{number_format($honor->jumlah_diterima)}}</td>
+                            <td>{{number_format($honor->jumlah_bersih)}}</td>
                             <td>{{$honor->category->name}}</td>
 
                             <td>{{$honor->user->rekening}}</td>
@@ -77,6 +79,7 @@
                             <td>
                                 {{$honor->created_at->format('M/y')}}
                             </td>
+                            <td>{{ $honor->keterangan }}</td>
                         </tr>
                         @endforeach
                     </tbody>

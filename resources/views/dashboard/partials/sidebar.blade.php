@@ -16,6 +16,7 @@
                     <i class="fas fa-users"></i>
                     <span class="nav-text">Pengguna</span>
                 </a>
+                </li>
                 <li><a href="{{route('honor.index')}}" aria-expanded="false">
                     <i class="fas fa-hand-holding-usd"></i>
                     <span class="nav-text">Honor</span>
@@ -48,6 +49,7 @@
                         <i class="fas fa-users"></i>
                         <span class="nav-text">Pengguna</span>
                     </a>
+                    </li>
                     <li><a href="{{route('honor.index')}}" aria-expanded="false">
                         <i class="fas fa-hand-holding-usd"></i>
                         <span class="nav-text">Honor</span>
@@ -78,7 +80,7 @@
                     </a>
                     </li>
                     <li><a href="{{route('dosen.honor.get', auth()->user()->id)}}" aria-expanded="false">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-hand-holding-usd"></i>
                         <span class="nav-text">Honor</span>
                     </a>
                     </li>

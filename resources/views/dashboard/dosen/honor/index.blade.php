@@ -19,8 +19,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Tanggal</th>
-                                        <th>Jumlah honor</th>
+                                        <th>Tanggal ke Bank</th>
+                                        <th>Jumlah Kotor</th>
                                         <th>Potongan</th>
                                         <th>Jumlah Diterima</th>
                                         <th>Keterangan</th>
@@ -31,11 +31,16 @@
                                     @foreach ($honors as $honor)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$honor->created_at->format('M/d/Y')}}</td>
-                                        <td>{{$honor->jumlah_honor}}</td>
-                                        <td>{{$honor->potongan}}</td>
-                                        <td>{{$honor->jumlah_diterima}}</td>
-                                        <td>{{$honor->category->name}}</td>
+                                        <td>
+                                            @php
+                                                $date = date_create($honor->tanggal_bank);
+                                                echo date_format($date, 'd-m-Y');
+                                            @endphp
+                                        </td>
+                                        <td>{{number_format($honor->jumlah_kotor)}}</td>
+                                        <td>{{number_format($honor->potongan)}}</td>
+                                        <td>{{number_format($honor->jumlah_bersih)}}</td>
+                                        <td>{{$honor->keterangan}}</td>
 
                                     </tr>
                                     @endforeach

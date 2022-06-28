@@ -36,7 +36,7 @@
           <td>{{$user->name}}</td>
           <td>{{$user->username}}</td>
           <td>{{$user->golongan}}</td>
-          <td>{{$user->division->name}}</td>
+          <td>{{$user->division_id}}</td>
           <td>{{$user->rekening}}</td>
           <td>{{$user->bank}}</td>
           <td>{{$user->role}}</td>

@@ -29,14 +29,24 @@
                   ><button type="submit" class="btn border-0"><i class="flaticon-381-search-2"></i></button></a
               ></span>
             </div>
+
+
             </form>
+            <div class="mb-4">
+                <a
+                  href="{{route('honor.index')}}"
+                  class="btn btn-success btn-md"
+                  ></i>Tampilkan Semua</a
+                >
+            </div>
             <div class="mb-4">
                 <a
                   href="{{route('honor.create')}}"
                   class="btn btn-primary btn-md"
                   ><i class="fas fa-list"></i> Honor</a
                 >
-              </div>
+            </div>
+
             {{-- <div class="input-group contacts-search mb-4">
                 <a href="{{route('honor.create')}}"
                   type="text"
@@ -100,8 +110,14 @@
                             class="fs-14 mb-3 user-work"
                             data-occupation="UI Designer"
                           >
-                           Bagian : {{$user->division->name}}
+                           Bagian : {{$user->division_id}}
                           </p>
+                          <p
+                          class="fs-14 mb-3 user-work"
+                          data-occupation="UI Designer"
+                        >
+                         Fungsional : {{$user->fungsional}}
+                        </p>
                           <p
                             class="fs-14 mb-3 user-work"
                             data-occupation="UI Designer"
@@ -112,7 +128,7 @@
 
                            <?php
                             $gos = $user->honor->first();
-                          $total_honor = $user->honor->sum('jumlah_honor');
+                          $total_honor = $user->honor->sum('jumlah_bersih');
                             $sekarang = now()->format('M/Y');
                           ?>
 
@@ -128,7 +144,7 @@
                                 $hidden = "hidden";
                             @endphp
 
-                            <p class="fs-12 fw-bold">  Honor terbaru bulan ini : {{'Rp.'.number_format($gos->jumlah_diterima)}}</b> </p>
+                            <p class="fs-12 fw-bold">  Honor terbaru bulan ini : {{'Rp.'.number_format($gos->jumlah_bersih)}}</b> </p>
                             @else
                             @php
                                 $hidden = "";
@@ -142,7 +158,7 @@
                           <ul>
 
                             <li>
-                              <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target=".bd-example-modal-sm" data-id="{{$user->id}}" data-golongan="{{$user->golongan}}" data-rek="{{$user->rekening}}" data-bank="{{$user->bank}}" class="payhonor"
+                              <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target=".bd-example-modal-sm" data-name="{{ $user->name }}" data-id="{{$user->id}}" data-golongan="{{$user->golongan}}" data-rek="{{$user->rekening}}" data-bank="{{$user->bank}}" class="payhonor"
                                 ><i class="fas fa-donate"></i></a>
                             </li>
                             <li>
@@ -168,25 +184,60 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Beri Honor</h5>
+                    <h5 class="modal-title" id="titlePayModal">Beri Honor</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal">
                     </button>
                 </div>
                 <form action="{{route('honor.store')}}" method="post">
                     @csrf
-                    <div class="modal-body">
+                  <div class="modal-body">
+                  
+                  <div class="mb-3">
+                    <select name="category_id" id="category_id" class="default-select form-control mb-2">
+                      <option value="">PILIH KATEGORI</option>
+                     @foreach ($categories as $category)
+                     <option value="{{$category->id}}">{{$category->name}}</option>
+                     @endforeach
+                    </select>
+                  </div>
 
-                        <select name="category_id" id="category_id" class="default-select form-control mb-2">
-                                         <option value="">PILIH KATEGORI</option>
-                                        @foreach ($categories as $category)
+                  <div class="mb-3" hidden>
+                    <input type="text" name="user_id" class="form-control" placeholder="user_id" id="user_id">
+                  </div>
 
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
 
-                                        @endforeach
-                        </select>
-                        </div>
-                <div class="modal-body" id="modalpay">
-                </div>
+                  <div class="mb-2 ms-3">
+                    <b>Jumlah Honor</b>
+                  </div>
+                  <div class="mb-3">
+                    <input type="number" name="jumlah_kotor" class="form-control" placeholder="Jumlah Kotor ...">
+                  </div>
+
+                  <div class="mb-3">
+                    <input type="number" name="potongan" class="form-control" placeholder="Potongan Pajak...">
+                  </div>
+
+                  <div class="mb-2 ms-3">
+                    <b>Keterangan</b>
+                  </div>
+                  <div class="mb-3">
+                    <textarea name="keterangan" id="keterangan" class="form-control" cols="30" rows="10" placeholder="Keterangan ..."></textarea>
+                  </div>
+
+                  <div class="mb-2 ms-3">
+                    <b>Tanggal Ke Bank</b>
+                  </div>
+                  <div class="mb-3 col-sm-4">
+                    <input type="date" name="tanggal_bank" id="tanggal_bank" class="form-control">
+                  </div>
+
+                  <div class="mb-2 ms-3">
+                    <p> <b>Nomor Rekening :</b>  <b id="rekening"></b>, <b id="bank"></b></p>
+                  </div>
+                
+                  
+
+                  </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
@@ -202,20 +253,26 @@
         $(document).ready(function(){
             $('.payhonor').click(function(){
                 var userid = $(this).data('id');
+                var name = $(this).data('name');
                 var golongan = $(this).data('golongan');
                 var rekening = $(this).data('rek');
                 var bank = $(this).data('bank');
-                $.ajax({
-                    success: function(response) {
-                        $('#payModal').modal('show');
-                        $('#modalpay').html(`<input type="hidden" name="user_id" class="form-control" placeholder="amount" value="`+userid+`">`+
-                        `<input type="number" name="jumlah_honor" class="form-control" value="" placeholder="Jumlah Honor">` + `<br>`+
-                        `<input type="hidden" value="`+golongan+`" name="golongan">` +
-                        `<input type="hidden" value="`+userid+`" name="user_id">` +
-                        `<p>Kirim ke : <b> `+rekening+` | `+bank+` </b></p>`
-                        );
-                    }
-                });
+                
+
+                $('#user_id').val(userid)
+                $('#rekening').html(rekening)
+                $('#bank').html(bank)
+
+                $('#titlePayModal').html('Beri Honor <b>'+name+'</b>')
+
+
+
+                
+
+
+
+                $('#payModal').modal('show');
+                
             });
         });
     </script>

@@ -18,6 +18,8 @@ use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,22 @@ if(auth()->user() == null)
 
 });
 
+
+
+Route::get('/name', function () {
+    $nama_lengkap = "Dr. Surya Wana b,akti as, askodaskodkaso , alspdlasp";
+    $nama_lengkap =  Str::lower($nama_lengkap); 
+    $nama_lengkap = str_replace('dr.', '', $nama_lengkap);
+    $nama_lengkap = str_replace(' ', '', $nama_lengkap);
+
+    $nama_lengkap = substr($nama_lengkap, 0, strpos($nama_lengkap, ','));
+
+    $numbers = rand(1 , 999);
+
+    return $username = $nama_lengkap . $numbers;
+
+});
+
 Route::get('/dashboard/admin', function () {
 
     $user_count = User::where('role', 'dosen')->count();
@@ -78,7 +96,7 @@ Route::get('/dashboard/admin', function () {
         "not_honor_bulan" => $user_count - count($array),
         "jumlah_dosen" => User::where('role', 'dosen')->count(),
 
-        "jumlah_honor_keseluruhan" => Honor::all()->sum('jumlah_honor')
+        "jumlah_honor_keseluruhan" => Honor::all()->sum('jumlah_bersih')
     ]);
 })->middleware('auth')->name('dashboard.admin');
 
@@ -87,7 +105,7 @@ Route::get('/dashboard/dosen', function () {
     return view('dashboard.dosen.index', [
         "title" => "Dashboard | Dosen",
         "users" => User::where('id', auth()->user()->id)->get(),
-        "sum_honor" => Honor::where('user_id', auth()->user()->id)->sum('jumlah_diterima'),
+        "sum_honor" => Honor::where('user_id', auth()->user()->id)->sum('jumlah_bersih'),
         "feedback" => Feedback::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->get(),
         "honor" => Honor::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->first(),
     ]);
@@ -129,7 +147,11 @@ Route::middleware('isAdmin')->group(function() {
 
     Route::resource('/dashboard/admin/honor', HonorController::class);
 
+    Route::get('/getUserForHonor/{id}', [HonorController::class, 'showUserDetail']);
+
     Route::post('importdatadosen', [ImportDataDosenController::class, 'importdatadosen'])->name('importdatadosen');
+
+    Route::get('exportdatadosen', [ImportDataDosenController::class, 'exportdatadosen'])->name('exportdatadosen');
 
     Route::post('getDetailHonor', [HonorController::class, 'show'])->name('get.detail.honor');
 
@@ -170,10 +192,14 @@ Route::middleware('isAdmin')->group(function() {
 
 //DOSEN
 Route::resource('/dashboard/dosen/profile', ProfileController::class)->middleware('auth');
+
 Route::get('/dashboard/dosen/honor/{user}', function(User $user){
     return view('dashboard.dosen.honor.index', [
         'users' => $user,
         'honors' => Honor::where('user_id' , $user->id)->orderBy('created_at', 'DESC')->get()
     ]);
 })->name('dosen.honor.get');
+
 Route::resource('/dashboard/dosen/feedback', FeedbackController::class)->middleware('auth');
+
+

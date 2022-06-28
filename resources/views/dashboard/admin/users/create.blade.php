@@ -48,14 +48,14 @@
                                 </div>
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Bagian</label>
-                                    <div class="col-sm-6">
-                                        <select name="division_id" id="division_id" class="default-select form-control wide can-deletes" >
-                                            <option value=""></option>
-                                            @foreach($divisions->skip(1) as $division)
-
-                                            <option value="{{$division->id}}">{{$division->name}}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control can-delete"  value="{{old('division_id')}}" name="division_id">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">fungsional</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control can-delete"  value="{{old('fungsional')}}" name="fungsional">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">

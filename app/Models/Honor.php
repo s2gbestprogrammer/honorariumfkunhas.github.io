@@ -11,13 +11,7 @@ class Honor extends Model
 
 
 
-    protected $fillable = [
-        'user_id',
-        'jumlah_honor',
-        'potongan',
-        'jumlah_diterima',
-        'category_id',
-    ];
+    protected $guarded = ['id'];
 
     public function user()
     {

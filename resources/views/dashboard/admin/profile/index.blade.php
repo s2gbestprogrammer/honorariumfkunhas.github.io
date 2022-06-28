@@ -50,7 +50,7 @@
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label">Bagian</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" placeholder="Bagian.." value="{{auth()->user()->division->name}}" readonly>
+                                        <input type="text" class="form-control" placeholder="Bagian.." value="{{auth()->user()->division_id ?? '-'}}" readonly>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">

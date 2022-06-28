@@ -14,8 +14,6 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
@@ -27,6 +25,7 @@ class LoginController extends Controller
         }
 
         return back()->with('fail', 'username atau password salah');
+
     }
 
     public function logout(Request $request)

@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index(User $user)
     {
         return view('dashboard.admin.users.index', [
-            'users' => User::all(),
+            'users' => User::orderBy('id', 'ASC')->get(),
 
         ]);
     }
@@ -57,8 +57,9 @@ class UserController extends Controller
         $validateData = $request->validate([
             'name' => 'required|max:255|min:3',
             'username' => 'required|min:3|unique:users',
-            'golongan' => 'required',
+            'golongan' => '',
             'division_id' => 'required',
+            'fungsional' => 'required',
             'rekening' => 'required',
             'bank' => 'required',
             'password' => 'required|min:5|max:255',
@@ -102,8 +103,9 @@ class UserController extends Controller
         $validateData = $request->validate([
             'name' => 'required|max:255|min:3',
             'username' => 'required|min:3',
-            'golongan' => 'required',
+            'golongan' => '',
             'division_id' => 'required',
+            'fungsional' => 'required',
             'rekening' => 'required',
             'bank' => 'required',
             'role' => 'required',
